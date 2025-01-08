@@ -38,7 +38,7 @@ struct AllTraficChangesSotingView: View {
                                 .frame(width: 55, height: 55)
                                 .overlay {
                                     Image(systemName: "chevron.left")
-                                        .foregroundStyle(.button)
+                                        .foregroundStyle(.white)
                                 }
                         }
                         
@@ -66,7 +66,7 @@ struct AllTraficChangesSotingView: View {
                                 .frame(width: 55, height: 55)
                                 .overlay {
                                     Image(systemName: "chevron.right")
-                                        .foregroundStyle(.button)
+                                        .foregroundStyle(.white)
                                 }
                         }
                     }

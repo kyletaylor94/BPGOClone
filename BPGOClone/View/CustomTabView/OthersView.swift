@@ -92,14 +92,18 @@ struct OthersView: View {
                     ForEach(OtherSections.allCases) { section in
                         NavigationLink {
                             switch section {
+                                
                             case .alltraficchanges:
                                 AllTraficChangesView()
+                                
                             case .canwehelp:
-                                Text("can we help")
+                                CanWeHelpView()
+                                
                             case .settings:
-                                Text("settings")
+                                SettingsView()
+                                
                             case .signexplanation:
-                                Text("Signexplanation")
+                                SignExplanationView()
                             }
                         } label: {
                             RoundedRectangle(cornerRadius: 20)

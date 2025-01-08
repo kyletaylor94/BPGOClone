@@ -17,7 +17,7 @@ struct AllTraficChangesView: View {
                 Rectangle()
                     .foregroundStyle(.navBG)
                     .ignoresSafeArea()
-                    .frame(height: -10)
+                    .frame(height: 0)
 
                 
                 AllTraficChangesSotingView()

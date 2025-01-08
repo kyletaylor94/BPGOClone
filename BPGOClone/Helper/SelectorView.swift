@@ -28,7 +28,7 @@ struct SelectorView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 112){
+            HStack(spacing: 112) {
                 ForEach(tabItems.allCases) { section in
                     Button(action: {
                         withAnimation(.snappy) {

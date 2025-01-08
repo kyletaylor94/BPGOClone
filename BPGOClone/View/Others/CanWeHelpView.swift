@@ -11,6 +11,7 @@ struct CanWeHelpView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack(alignment: .top) {
+            
             Color.backGround
                 .ignoresSafeArea()
             

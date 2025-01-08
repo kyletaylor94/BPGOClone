@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround
@@ -22,8 +23,12 @@ struct SettingsView: View {
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .navigation) {
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(.white)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.white)
+                    }
                 }
                 
                 ToolbarItem(placement: .principal) {

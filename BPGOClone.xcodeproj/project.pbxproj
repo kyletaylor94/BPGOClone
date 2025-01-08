@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		980E63A42D2E96FD00DA80FE /* FittedSheets in Frameworks */ = {isa = PBXBuildFile; productRef = 980E63A32D2E96FD00DA80FE /* FittedSheets */; };
+		980E63A72D2E989D00DA80FE /* FittedSheetsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 980E63A62D2E989D00DA80FE /* FittedSheetsSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		98FE52C12D29DE25000CAC12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980E63A72D2E989D00DA80FE /* FittedSheetsSwiftUI in Frameworks */,
+				980E63A42D2E96FD00DA80FE /* FittedSheets in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = BPGOClone;
 			packageProductDependencies = (
+				980E63A32D2E96FD00DA80FE /* FittedSheets */,
+				980E63A62D2E989D00DA80FE /* FittedSheetsSwiftUI */,
 			);
 			productName = BPGOClone;
 			productReference = 98FE52B02D29DE23000CAC12 /* BPGOClone.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = 98FE52A72D29DE23000CAC12;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				980E63A22D2E96FD00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets" */,
+				980E63A52D2E989D00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets-SwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98FE52B12D29DE23000CAC12 /* Products */;
 			projectDirPath = "";
@@ -558,6 +571,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		980E63A22D2E96FD00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gordontucker/FittedSheets";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+		980E63A52D2E989D00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets-SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Jeonhui/FittedSheets-SwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		980E63A32D2E96FD00DA80FE /* FittedSheets */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 980E63A22D2E96FD00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets" */;
+			productName = FittedSheets;
+		};
+		980E63A62D2E989D00DA80FE /* FittedSheetsSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 980E63A52D2E989D00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets-SwiftUI" */;
+			productName = FittedSheetsSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 98FE52A82D29DE23000CAC12 /* Project object */;
 }

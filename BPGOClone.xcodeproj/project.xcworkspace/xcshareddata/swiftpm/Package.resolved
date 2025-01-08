@@ -1,0 +1,24 @@
+{
+  "originHash" : "93845f59aeeac4b3c7fcd7454957bf7ecce7fc2c55a921ff4cf3a4b8dc150b5a",
+  "pins" : [
+    {
+      "identity" : "fittedsheets",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gordontucker/FittedSheets",
+      "state" : {
+        "revision" : "ba34781367fb7c947e2a19334318cf440c92968c",
+        "version" : "2.7.1"
+      }
+    },
+    {
+      "identity" : "fittedsheets-swiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jeonhui/FittedSheets-SwiftUI",
+      "state" : {
+        "revision" : "65a6004b9db83143db97b4927a1b9a216fccf48b",
+        "version" : "1.2.1"
+      }
+    }
+  ],
+  "version" : 3
+}
