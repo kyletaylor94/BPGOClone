@@ -28,7 +28,7 @@ enum CustomTabSection: String, Identifiable, CaseIterable {
     var id: String { return self.rawValue }
 }
 
-struct ContentView: View {
+struct CustomTabView: View {
     @State private var selectedSection: CustomTabSection = .plan
     var body: some View {
         NavigationStack{
@@ -86,5 +86,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    CustomTabView()
 }

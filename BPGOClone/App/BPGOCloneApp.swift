@@ -11,7 +11,7 @@ import SwiftUI
 struct BPGOCloneApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CustomTabView()
         }
     }
 }

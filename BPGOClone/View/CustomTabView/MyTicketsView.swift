@@ -15,7 +15,7 @@ struct MyTicketsView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
+                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30))
                     .fill(.navBG)
                     .frame(width: UIScreen.main.bounds.width, height: 100)
                     .ignoresSafeArea(edges: .top)

@@ -90,36 +90,50 @@ struct OthersView: View {
                 
                 VStack(spacing: 20) {
                     ForEach(OtherSections.allCases) { section in
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(.white,style: StrokeStyle())
-                            .fill(.navBG)
-                            .frame(width: UIScreen.main.bounds.width - 32, height: 70)
-                            .overlay {
-                                HStack(spacing: 12) {
-                                    Circle()
-                                        .frame(height: 40)
-                                        .foregroundStyle(section.colorName)
-                                        .overlay {
-                                            Image(systemName: section.imageName)
-                                                .font(.system(size: 20))
-                                                .foregroundStyle(.white)
-                                                .fontWeight(.semibold)
-                                        }
-                                    
-                                    Text(section.rawValue)
-                                        .foregroundStyle(.white)
-                                        .bold()
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundStyle(.white)
-                                }
-                                .padding()
+                        NavigationLink {
+                            switch section {
+                            case .alltraficchanges:
+                                AllTraficChangesView()
+                            case .canwehelp:
+                                Text("can we help")
+                            case .settings:
+                                Text("settings")
+                            case .signexplanation:
+                                Text("Signexplanation")
                             }
+                        } label: {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.white,style: StrokeStyle())
+                                .fill(.navBG)
+                                .frame(width: UIScreen.main.bounds.width - 32, height: 70)
+                                .overlay {
+                                    HStack(spacing: 12) {
+                                        Circle()
+                                            .frame(height: 40)
+                                            .foregroundStyle(section.colorName)
+                                            .overlay {
+                                                Image(systemName: section.imageName)
+                                                    .font(.system(size: 20))
+                                                    .foregroundStyle(.white)
+                                                    .fontWeight(.semibold)
+                                            }
+                                        
+                                        Text(section.rawValue)
+                                            .foregroundStyle(.white)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .foregroundStyle(.white)
+                                    }
+                                    .padding()
+                                }
+                        }
                     }
                 }
                 .padding(.top)
+              
                 Spacer()
             }
             .padding(.top, 76)
