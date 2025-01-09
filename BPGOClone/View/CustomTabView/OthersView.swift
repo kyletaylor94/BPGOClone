@@ -42,6 +42,7 @@ enum OtherSections: String, Identifiable, CaseIterable {
 }
 
 struct OthersView: View {
+    @State private var registerIsPresented: Bool = false
     @State private var selectedSection: OtherSections? = nil
     var body: some View {
         ZStack {
@@ -72,7 +73,7 @@ struct OthersView: View {
                                 .padding()
                             
                             Button {
-                                //registration
+                                registerIsPresented = true
                             } label: {
                                 RoundedRectangle(cornerRadius: 12)
                                     .frame(width: 230, height: 40)
@@ -84,6 +85,9 @@ struct OthersView: View {
                                     }
                             }
                             .padding(.leading)
+                            .fullScreenCover(isPresented: $registerIsPresented) {
+                                RegisterSheet()
+                            }
                             
                         }
                     }

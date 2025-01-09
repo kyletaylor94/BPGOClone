@@ -11,7 +11,6 @@ struct CanWeHelpView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack(alignment: .top) {
-            
             Color.backGround
                 .ignoresSafeArea()
             
@@ -42,20 +41,39 @@ struct CanWeHelpView: View {
             }
             
             VStack(spacing: 4) {
-                CustomReuseableButton(text: "Gyakran ismételt kérdések", icon: "questionmark.bubble", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+                Link(destination: URL(string: "https://bkk.hu/gyik/budapestgo/?frame=1&app=prod")!) {
+                    CustomReuseableButton(text: "Gyakran ismételt kérdések", icon: "questionmark.bubble", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+                }
                 
+        //shake feedback about bug
                 CustomReuseableButton(text: "Visszajelzés az applikáció\nműködéséről", icon: "circle.circle.fill", topLeading: 0, topTrailing: 0, bottomLeading: 0, bottomTrailing: 0, height: 80)
                 
+        //linkbutton
                 CustomReuseableButton(text: "Visszajelzés a BKK\nszolgáltatásaival kapcsolatban", icon: "rectangle", topLeading: 0, topTrailing: 0, bottomLeading: 0, bottomTrailing: 0, height: 80)
                 
-                CustomReuseableButton(text: "Elérhetőségek", icon: "paperplane", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24)
+                NavigationLink {
+                    ContactDetailsView()
+                } label: {
+                    CustomReuseableButton(text: "Elérhetőségek", icon: "paperplane", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24)
+                }
+
 
             }
             
             VStack(spacing: 4) {
-                CustomReuseableButton(text: "Az alkalmazás fő funkciói", icon: "apps.iphone", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+                NavigationLink {
+                    HowAppDoesWorkView()
+                } label: {
+                    CustomReuseableButton(text: "Az alkalmazás fő funkciói", icon: "apps.iphone", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+                }
+
                 
-                CustomReuseableButton(text: "Mobiljegy működése", icon: "ticket.fill", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24)
+                NavigationLink {
+                    HowMobileTicketWorksView()
+                } label: {
+                    CustomReuseableButton(text: "Mobiljegy működése", icon: "ticket.fill", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24)
+                }
+
 
 
             }

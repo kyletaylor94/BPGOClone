@@ -25,6 +25,7 @@ enum MyTicketsSection: Int, Identifiable, CaseIterable {
 
 struct MyTicketsView: View {
     @State private var selectedIndex: Int = 0
+    @State private var registerIsPresented = false
     var body: some View {
         ZStack{
             Color.backGround.ignoresSafeArea()
@@ -78,8 +79,8 @@ struct MyTicketsView: View {
                         .foregroundStyle(.gray)
                     
                     Rectangle()
-                        .frame(width: UIScreen.main.bounds.width  / CGFloat(tabItems.allCases.count ), height: 1.0)
-                        .offset(x: CGFloat(selectedIndex) * UIScreen.main.bounds.width / CGFloat(tabItems.allCases.count))
+                        .frame(width: UIScreen.main.bounds.width  / CGFloat(MyTicketsSection.allCases.count ), height: 1.0)
+                        .offset(x: CGFloat(selectedIndex) * UIScreen.main.bounds.width / CGFloat(MyTicketsSection.allCases.count))
                         .padding(.trailing, 215)
                         .foregroundStyle(.white)
                     
@@ -90,88 +91,10 @@ struct MyTicketsView: View {
                 VStack{
                     switch selectedIndex {
                     case 0:
-                        VStack(spacing: 12) {
-                            
-                            RoundedRectangle(cornerRadius: 12)
-                                .frame(width: 220, height: 220)
-                                .foregroundColor(.purple)
-                            
-                            Text("Lépj be a fiókodba, és vásárolj egyet!")
-                                .font(.title2)
-                                .foregroundStyle(.white)
-                                .bold()
-                            
-                            Text("A jegyeket csak akkor éred el, ha belépsz a fiókodba.")
-                                .foregroundStyle(.gray)
-                                .font(.system(size: 16))
-                                .padding()
-                            
-                            //navigate to how to work
-                            Text("Hogyan működik a mobiljegy?")
-                                .foregroundStyle(.white)
-                                .bold()
-                            
-                            Spacer()
-                            
-                            VStack(spacing: 60) {
-                                UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 24))
-                                    .fill(.purple)
-                                    .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
-                                    .frame(width: UIScreen.main.bounds.width, height: 150)
-                                    .overlay {
-                                        HStack{
-                                            Spacer()
-                                            Button {
-                                                //dismiss
-                                            } label: {
-                                                Image(systemName: "xmark")
-                                            }
-                                            .font(.title3)
-                                            .foregroundStyle(.white)
-                                        }
-                                        .padding(.bottom, 70)
-                                        .padding()
-                                    }
-                                
-                                HStack{
-                                    Button {
-                                        //buy
-                                    } label: {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .fill(.button)
-                                            .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                                            .frame(width: 200, height: 57)
-                                            .overlay {
-                                                Text("Vásárlás")
-                                                    .bold()
-                                                    .foregroundStyle(.navBG)
-                                                    .font(.title3)
-                                            }
-                                    }
-                                    
-                                    Button {
-                                        //signin
-                                    } label: {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .fill(.navBG)
-                                            .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                                            .frame(width: 200, height: 57)
-                                            .overlay {
-                                                Text("Belépés")
-                                                    .bold()
-                                                    .foregroundStyle(.white)
-                                                    .font(.title3)
-                                            }
-                                    }
-                                    
-                                }
-                            }
-                            .padding(.bottom, 75)
-                        }
-                        .multilineTextAlignment(.center)
-                        .padding(.top)
+                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true)
                     case 1:
-                        Text("vagy ne bánja a geci")
+                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .used, title: "Lépj be a fiókodba és vásárolj jegyet!", subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(ContactDetailsView()))
+                        
                     default:
                         Color.backGround.ignoresSafeArea()
                     }
@@ -183,9 +106,7 @@ struct MyTicketsView: View {
     }
 }
 
+
 #Preview {
-   // ZStack {
-       // Color.backGround.ignoresSafeArea()
-        MyTicketsView()
-   // }
+    MyTicketsView()
 }

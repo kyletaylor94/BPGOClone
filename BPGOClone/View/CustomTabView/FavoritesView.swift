@@ -30,54 +30,24 @@ struct FavoritesView: View {
                 .padding(.top, -50)
             
             VStack{
+                
                 switch selectedIndex {
+                    
                 case 0:
-                    VStack(spacing: 12) {
-                        
-                        Circle()
-                            .frame(width: 220, height: 220)
-                            .foregroundColor(.black)
-                        
-                        Text("Állítsd be kedvenc megállóidat!")
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .bold()
-                        
-                        Text("Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.")
-                            .foregroundStyle(.white)
-                            .font(.title3)
-                            .padding()
-                        
-                        Spacer()
-                        VStack{
-                            Button {
-                                //add new
-                            } label: {
-                                RoundedRectangle(cornerRadius: 18)
-                                    .fill(.button)
-                                    .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
-                                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                                    .overlay {
-                                        Text("Új megálló hozzáadása")
-                                            .foregroundStyle(.black)
-                                            .font(.title3)
-                                            .bold()
-                                    }
-                            }
-                        }
-                        .padding(.bottom, 70)
+                    FavoriteCell(image: .stops, title: "Állítsd be kedvenc megállóidat!", subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.", buttonTitle: "Új megálló hozzáadása") {
+                        //
                     }
-                    .multilineTextAlignment(.center)
                 case 1:
-                    Text("vagy ne bánja a geci")
+                    FavoriteCell(image: .departures, title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!", subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.", buttonTitle: "Új járat hozzáadása") {
+                        //
+                    }
                 default:
                     Color.backGround.ignoresSafeArea()
                 }
             }
             Spacer()
         }
-        .background(Color.backGround.ignoresSafeArea()) // Háttér kitöltése
-
+        .background(Color.backGround.ignoresSafeArea())
     }
 }
 
@@ -88,3 +58,5 @@ struct FavoritesView: View {
         FavoritesView()
     }
 }
+
+

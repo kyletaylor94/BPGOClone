@@ -22,7 +22,7 @@ enum CustomTabSection: String, Identifiable, CaseIterable {
         case .ticket:
             return "ticket"
         case .others:
-            return "house"
+            return "list.bullet"
         }
     }
     var id: String { return self.rawValue }
