@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
+    @State private var themeIsPresented = false
+    @State private var languageIsPresenter = false
+    @State private var nearbyDeparturesIsPresented = false
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround
@@ -40,43 +43,80 @@ struct SettingsView: View {
             }
             
             VStack(spacing: 3) {
-                CustomReuseableButton(text: "Megjelenés", icon: "sun.lefthalf.filled", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
                 
-                CustomReuseableButton(text: "Nyelv", icon: "translate", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24)
+                Button(action: {
+                    themeIsPresented.toggle()
+                }, label: {
+                    CustomReuseableButton(text: "Megjelenés", icon: "sun.lefthalf.filled", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0, height: 50)
+                })
+                .sheet(isPresented: $themeIsPresented) {
+                    ThemeView()
+                        .padding(.top, 50)
+                        .presentationDetents([.height(400)])
+                        .presentationCornerRadius(24)
+                        .presentationBackground(.navBG)
+                        .presentationDragIndicator(.visible)
+                }
+                
+                Button {
+                    languageIsPresenter.toggle()
+                } label: {
+                    CustomReuseableButton(text: "Nyelv", icon: "translate", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24, height: 50)
+                }
+                .sheet(isPresented: $languageIsPresenter) {
+                    LanguageView()
+                        .presentationDetents([.height(200)])
+                        .presentationCornerRadius(24)
+                        .presentationBackground(.navBG)
+                        .presentationDragIndicator(.visible)
+                }
             }
-         //   .padding(.top, -105)
             
             VStack{
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.navBG)
-                    .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 120)
-                    .overlay {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack{
-                                Text("Közeli indulások")
-                                    .fontWeight(.semibold)
+                Button {
+                    nearbyDeparturesIsPresented.toggle()
+                } label: {
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(.navBG)
+                        .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
+                        .frame(width: UIScreen.main.bounds.width - 32, height: 110)
+                        .overlay {
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack{
+                                    Text("Közeli indulások")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.white)
+                                    
+                                    Text("Megálló távolsága szerint")
+                                        .foregroundStyle(.gray)
+                                        .font(.caption)
+                                    
+                                    Spacer()
+                                }
+                                
+                                Text("Közeli indulások rendezése indulási idő vagy megálló távolság szerint")
+                                    .font(.subheadline)
                                     .foregroundStyle(.white)
+                                    .fontWeight(.light)
                                 
-                                Text("Megálló távolsága szerint")
-                                    .foregroundStyle(.gray)
-                                    .font(.caption)
-                                
-                                Spacer()
                             }
-                            
-                            Text("Közeli indulások rendezése indulási idő vagy megálló távolság szerint")
-                                .foregroundStyle(.white)
-                                .fontWeight(.light)
-
+                            .multilineTextAlignment(.leading)
+                            .padding()
                         }
-                        .padding()
-                    }
+                }
+                .sheet(isPresented: $nearbyDeparturesIsPresented) {
+                    NearbyDepartures()
+                        .presentationDetents([.height(160)])
+                        .presentationCornerRadius(24)
+                        .presentationBackground(.navBG)
+                        .presentationDragIndicator(.visible)
+                }
+
                 
                 RoundedRectangle(cornerRadius: 24)
                     .fill(.navBG)
                     .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 120)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 115)
                     .overlay {
                         VStack(alignment: .leading, spacing: 5) {
                             Toggle(isOn: .constant(true)) {
@@ -94,7 +134,12 @@ struct SettingsView: View {
                     }
                 
                 VStack{
-                    CustomReuseableButton(text: "Dokumentumok", icon: "document", topLeading: 30, topTrailing: 30, bottomLeading: 30, bottomTrailing: 30)
+                    NavigationLink {
+                        DocumentsView()
+                    } label: {
+                        CustomReuseableButton(text: "Dokumentumok", icon: "document", topLeading: 24, topTrailing: 24, bottomLeading: 24, bottomTrailing: 24, height: 53)
+                    }
+                    
                 }
                 .padding(.top)
                 

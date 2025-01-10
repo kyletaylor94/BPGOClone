@@ -18,7 +18,7 @@ struct FavoritesView: View {
                 .overlay {
                     VStack(alignment: .center) {
                         Text("Kedvencek")
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.tabButton)
                             .font(.title3)
                             .fontWeight(.semibold)
                             .padding()

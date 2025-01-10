@@ -15,6 +15,9 @@ struct CustomReuseableButton: View {
     let bottomLeading: CGFloat
     let bottomTrailing: CGFloat
     var height: CGFloat?
+    var isInfoAvailable: Bool = false
+    var isActiveVoid: (() -> Void)? = nil
+    
     
     var body: some View {
         UnevenRoundedRectangle(cornerRadii: .init(topLeading: topLeading, bottomLeading: bottomLeading, bottomTrailing: bottomTrailing, topTrailing: topTrailing))
@@ -32,18 +35,27 @@ struct CustomReuseableButton: View {
                     
                     Spacer()
                     
+                    if isInfoAvailable == true {
+                        Button {
+                            isActiveVoid?()
+                        } label: {
+                            Image(systemName: "info.circle")
+                        }
+                    }
+                    
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.white)
                         .fontWeight(.semibold)
                 }
                 .padding()
+                .multilineTextAlignment(.leading)
             }
     }
 }
 
-#Preview {
-    ZStack{
-        Color.backGround.ignoresSafeArea()
-        CustomReuseableButton(text: "Megjelenés", icon: "house", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
-    }
-}
+//#Preview {
+//    ZStack{
+//        Color.backGround.ignoresSafeArea()
+//        CustomReuseableButton(text: "Megjelenés", icon: "house", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+//    }
+//}

@@ -63,14 +63,15 @@ struct CustomTabView: View {
                                 VStack(spacing: 12) {
                                     RoundedRectangle(cornerRadius: 13)
                                         .frame(width: 45, height: 40, alignment: .center)
-                                        .foregroundStyle(selectedSection == section ? .white : .tab)
+                                        .foregroundStyle(selectedSection == section ? .tabButton : .customWhiteBlack)
                                         .overlay {
                                             Image(systemName: section.imageName)
                                                 .font(.title2)
-                                                .foregroundStyle(selectedSection == section ? .black : .white)
+                                                .foregroundStyle(selectedSection == section ? .customWhiteBlack : .tabButton)
                                         }
                                     Text(section.rawValue)
                                         .font(.caption)
+                                        .foregroundStyle(selectedSection == section ? .navBG : .tabButton)
                                 }
                                 .foregroundStyle(.white)
                                 .padding(.bottom)
@@ -81,9 +82,9 @@ struct CustomTabView: View {
                     .background(
                         RoundedRectangle(cornerRadius: 24)
                             .stroke(.white, style: StrokeStyle(lineWidth: 0.7))
-                            .fill(.tab)
+                            .fill(.customWhiteBlack)
                     )
-                    .offset(y: 30)
+                    .offset(y: 35)
                     
                 }
             }

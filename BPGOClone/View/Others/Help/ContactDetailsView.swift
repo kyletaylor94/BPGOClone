@@ -13,7 +13,7 @@ struct ContactDetailsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            VStack(spacing: -120){
+            VStack(spacing: -120) {
                 UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
                     .fill(.navBG)
                     .frame(width: UIScreen.main.bounds.width, height: 100)
@@ -79,6 +79,7 @@ struct ContactDetailsView: View {
                     
                 }
             }
+            .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button {
@@ -96,30 +97,6 @@ struct ContactDetailsView: View {
                         .foregroundStyle(.white)
                 }
             }
-//                .overlay {
-//                    VStack{
-//                        HStack{
-//                            Button {
-//                                dismiss()
-//                            } label: {
-//                                Image(systemName: "chevron.left")
-//
-//                            }
-//                            .padding(.leading, 20)
-//
-//                            Spacer()
-//                            Text("Elérhetőségek")
-//                                .font(.title3)
-//                                .bold()
-//                            Spacer()
-//
-//                        }
-//                        .foregroundStyle(.white)
-//                        
-//                        Spacer()
-//                    }
-//                    .padding(.top)
-//                }
         }
     }
 }

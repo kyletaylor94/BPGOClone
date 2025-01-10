@@ -11,7 +11,7 @@ struct RegisterSheet: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack {
-            Color.backGround.ignoresSafeArea()
+            Color.navBG.ignoresSafeArea()
             
             VStack{
                 HStack{
@@ -31,9 +31,10 @@ struct RegisterSheet: View {
                 .foregroundStyle(.white)
                 .padding()
                 
-                RoundedRectangle(cornerRadius: 12)
+                Image(.auth1)
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 300, height: 200)
-                    .foregroundStyle(.blue)
                 
                 VStack(spacing: 15) {
                     Capsule()
