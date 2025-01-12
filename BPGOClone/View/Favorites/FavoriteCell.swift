@@ -12,7 +12,8 @@ struct FavoriteCell: View {
     let title: String
     let subTitle: String
     let buttonTitle: String
-    let void: () -> Void
+    let navigateTo: AnyView
+   // let void: () -> Void
     
     var body: some View {
         VStack(spacing: 12) {
@@ -35,8 +36,13 @@ struct FavoriteCell: View {
             Spacer()
             
             VStack{
-                Button {
-                    void()
+//                Button {
+//                    void()
+//                } label: {
+//
+//                }
+                NavigationLink {
+                    AnyView(navigateTo)
                 } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(.button)
@@ -44,11 +50,12 @@ struct FavoriteCell: View {
                         .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                         .overlay {
                             Text(buttonTitle)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.customWhiteBlack)
                                 .font(.title3)
                                 .bold()
                         }
                 }
+
             }
             .padding(.bottom, 70)
         }

@@ -17,7 +17,7 @@ struct DeparturesView: View {
                     .frame(width: UIScreen.main.bounds.width - 32)
             }
             
-            VStack(spacing: 3) {
+            VStack(spacing: 8) {
                 //MARK: - departurescells
                 ForEach(0..<20) { _ in
                     UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 24))

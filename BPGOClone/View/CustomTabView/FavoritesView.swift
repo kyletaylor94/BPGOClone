@@ -18,7 +18,7 @@ struct FavoritesView: View {
                 .overlay {
                     VStack(alignment: .center) {
                         Text("Kedvencek")
-                            .foregroundStyle(.tabButton)
+                            .foregroundStyle(.customBlackWhite)
                             .font(.title3)
                             .fontWeight(.semibold)
                             .padding()
@@ -34,13 +34,9 @@ struct FavoritesView: View {
                 switch selectedIndex {
                     
                 case 0:
-                    FavoriteCell(image: .stops, title: "Állítsd be kedvenc megállóidat!", subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.", buttonTitle: "Új megálló hozzáadása") {
-                        //
-                    }
+                    FavoriteCell(image: .stops, title: "Állítsd be kedvenc megállóidat!", subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.", buttonTitle: "Új megálló hozzáadása", navigateTo: AnyView(AddNewStopView()))
                 case 1:
-                    FavoriteCell(image: .departures, title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!", subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.", buttonTitle: "Új járat hozzáadása") {
-                        //
-                    }
+                    FavoriteCell(image: .departures, title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!", subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.", buttonTitle: "Új járat hozzáadása", navigateTo: AnyView(EmptyView()))
                 default:
                     Color.backGround.ignoresSafeArea()
                 }

@@ -41,7 +41,7 @@ struct MyTicketsView: View {
                                 Spacer()
                                 Text("Jegyeim")
                                     .font(.title2)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.customBlackWhite)
                                     .fontWeight(.semibold)
                                 
                                 Spacer()

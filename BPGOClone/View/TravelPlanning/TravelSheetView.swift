@@ -35,12 +35,13 @@ struct TravelSheetView: View {
     var body: some View {
         ZStack(alignment: .top) {
             UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, topTrailing: 24))
-               // .foregroundStyle(.customWhiteBlack)
                 .foregroundStyle(.backGround)
+              //  .foregroundStyle(.customBlackWhite)
             
             VStack{
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 30, bottomTrailing: 0, topTrailing: 24))
-                    .fill(.customWhiteBlack)
+                 //   .fill(.customWhiteBlack)
+                    .fill(.navBG)
                     .frame(width: UIScreen.main.bounds.width, height: 150)
                     .overlay {
                         VStack{
@@ -80,7 +81,7 @@ struct TravelSheetView: View {
                     
                     Text("Németh László utca közelében")
                         .font(.title3)
-                        .foregroundStyle(.customWhiteBlack)
+                        .foregroundStyle(.customBlackWhite)
                         .bold()
                         .padding(.top)
                         .padding(.trailing, 110)
