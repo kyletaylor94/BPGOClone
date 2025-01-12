@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		980E63A42D2E96FD00DA80FE /* FittedSheets in Frameworks */ = {isa = PBXBuildFile; productRef = 980E63A32D2E96FD00DA80FE /* FittedSheets */; };
 		980E63A72D2E989D00DA80FE /* FittedSheetsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 980E63A62D2E989D00DA80FE /* FittedSheetsSwiftUI */; };
+		984B91F62D33C93600D65A15 /* Shake in Frameworks */ = {isa = PBXBuildFile; productRef = 984B91F52D33C93600D65A15 /* Shake */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984B91F62D33C93600D65A15 /* Shake in Frameworks */,
 				980E63A72D2E989D00DA80FE /* FittedSheetsSwiftUI in Frameworks */,
 				980E63A42D2E96FD00DA80FE /* FittedSheets in Frameworks */,
 			);
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				980E63A32D2E96FD00DA80FE /* FittedSheets */,
 				980E63A62D2E989D00DA80FE /* FittedSheetsSwiftUI */,
+				984B91F52D33C93600D65A15 /* Shake */,
 			);
 			productName = BPGOClone;
 			productReference = 98FE52B02D29DE23000CAC12 /* BPGOClone.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				980E63A22D2E96FD00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets" */,
 				980E63A52D2E989D00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets-SwiftUI" */,
+				984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98FE52B12D29DE23000CAC12 /* Products */;
@@ -589,6 +593,14 @@
 				minimumVersion = 1.2.1;
 			};
 		};
+		984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shakebugs/shake-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 17.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -601,6 +613,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 980E63A52D2E989D00DA80FE /* XCRemoteSwiftPackageReference "FittedSheets-SwiftUI" */;
 			productName = FittedSheetsSwiftUI;
+		};
+		984B91F52D33C93600D65A15 /* Shake */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */;
+			productName = Shake;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

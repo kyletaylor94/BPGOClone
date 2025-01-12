@@ -1,5 +1,5 @@
 {
-  "originHash" : "93845f59aeeac4b3c7fcd7454957bf7ecce7fc2c55a921ff4cf3a4b8dc150b5a",
+  "originHash" : "04f401a151aa8c1b52cc985e8223bedaac15d35fc85b803d26bd66943a605efd",
   "pins" : [
     {
       "identity" : "fittedsheets",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "65a6004b9db83143db97b4927a1b9a216fccf48b",
         "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "shake-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shakebugs/shake-ios",
+      "state" : {
+        "revision" : "71e021553f21adaee92ab02c9aadd3f9d5d038a6",
+        "version" : "17.1.0"
       }
     }
   ],

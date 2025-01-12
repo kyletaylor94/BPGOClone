@@ -35,6 +35,8 @@ struct TravelSheetView: View {
     var body: some View {
         ZStack(alignment: .top) {
             UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, topTrailing: 24))
+               // .foregroundStyle(.customWhiteBlack)
+                .foregroundStyle(.backGround)
             
             VStack{
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 30, bottomTrailing: 0, topTrailing: 24))
@@ -60,8 +62,7 @@ struct TravelSheetView: View {
                         StopsView()
                         
                     case 3:
-                        Text("Szűrő")
-                            .foregroundStyle(.white)
+                        PlanSortingView()
                         
                     default:
                         Text("default")
