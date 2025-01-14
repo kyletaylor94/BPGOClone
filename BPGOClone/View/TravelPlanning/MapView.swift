@@ -9,6 +9,9 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    var sheetOffset: CGFloat
+    private let defaultCapsulePosition: CGFloat = -80
+
     var body: some View {
         ZStack{
             Map()
@@ -33,6 +36,8 @@ struct MapView: View {
                             .foregroundStyle(.gray)
                         }
                 }
+                .offset(y: defaultCapsulePosition + calculateCapsuleOffset())
+                .animation(.easeInOut, value: sheetOffset)
                 
                 
                 Spacer()
@@ -74,14 +79,26 @@ struct MapView: View {
 
                 }
                 .padding(.trailing)
-                .padding(.top, 240)
+                .padding(.top, -70 + sheetOffset / 2)
                 
                 Spacer()
             }
         }
     }
+      private func calculateCapsuleOffset() -> CGFloat {
+          // A minimum és maximum pozíció, ahol a Capsule mozogni kezd
+          let activeRange: ClosedRange<CGFloat> = 550...623
+          
+          if activeRange.contains(sheetOffset) {
+              // A tartományban a Capsule arányosan felfelé mozdul
+              let progress = (sheetOffset - activeRange.lowerBound) / (activeRange.upperBound - activeRange.lowerBound)
+              return progress * 85 // Felfelé mozdul 130 pontot
+          }
+          
+          return 0
+      }
 }
 
 #Preview {
-    MapView()
+    MapView(sheetOffset: 0)
 }

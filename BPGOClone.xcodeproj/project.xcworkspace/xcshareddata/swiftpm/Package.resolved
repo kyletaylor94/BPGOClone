@@ -1,24 +1,6 @@
 {
-  "originHash" : "04f401a151aa8c1b52cc985e8223bedaac15d35fc85b803d26bd66943a605efd",
+  "originHash" : "76da157e1bea53d365b6fc252136b1167ae9dfae150ed774a5e3728341ff7eb9",
   "pins" : [
-    {
-      "identity" : "fittedsheets",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gordontucker/FittedSheets",
-      "state" : {
-        "revision" : "ba34781367fb7c947e2a19334318cf440c92968c",
-        "version" : "2.7.1"
-      }
-    },
-    {
-      "identity" : "fittedsheets-swiftui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Jeonhui/FittedSheets-SwiftUI",
-      "state" : {
-        "revision" : "65a6004b9db83143db97b4927a1b9a216fccf48b",
-        "version" : "1.2.1"
-      }
-    },
     {
       "identity" : "shake-ios",
       "kind" : "remoteSourceControl",

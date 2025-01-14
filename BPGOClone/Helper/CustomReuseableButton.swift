@@ -53,9 +53,9 @@ struct CustomReuseableButton: View {
     }
 }
 
-//#Preview {
-//    ZStack{
-//        Color.backGround.ignoresSafeArea()
-//        CustomReuseableButton(text: "Megjelenés", icon: "house", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
-//    }
-//}
+#Preview {
+    ZStack{
+        Color.backGround.ignoresSafeArea()
+        CustomReuseableButton(text: "Megjelenés", icon: "house", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0)
+    }
+}
