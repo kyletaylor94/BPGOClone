@@ -21,19 +21,19 @@ enum AdultSection: String, TicketSection, CaseIterable {
             return "house"
         case .month:
             return "house"
-
+            
         case .capitalpass:
             return "house"
-
+            
         case .countypass:
             return "house"
-
+            
         case .quarterlypass:
             return "house"
-
+            
         case .yearlydiscountpass:
             return "house"
-
+            
         }
     }
     
@@ -68,10 +68,10 @@ enum StudentSection: String, TicketSection, CaseIterable {
             return "house"
         case .countydiscountpass:
             return "house"
-
+            
         case .monthcapitalpass:
             return "house"
-
+            
         }
     }
     
@@ -197,20 +197,23 @@ struct PassesView: View {
                 PassesSelector(selectedIndex: $selectedIndex)
                 
                 VStack{
-                    switch selectedIndex {
-                    case 0:
-                        ScrollView{
-                            VStack(spacing: 40) {
-                                HStack{
-                                    Image(systemName: "info.circle")
+                    ScrollView{
+                        VStack(spacing: 40) {
+                            HStack{
+                                Image(systemName: "info.circle")
+                                if selectedIndex == 0 {
                                     Text("Magászemély nevére kérhető számla")
+                                } else {
+                                    Text("Cég nevére kérhető számla")
                                 }
-                                .foregroundStyle(.blue)
-                                
-                                InfoBox(informationPresented: $informationPresented, width: UIScreen.main.bounds.width - 74)
-                                
-                                VStack(spacing: 3) {
-                                    //MARK: - disclosures
+                            }
+                            .foregroundStyle(.blue)
+                            
+                            InfoBox(informationPresented: $informationPresented, width: UIScreen.main.bounds.width - 74)
+                            
+                            VStack(spacing: 3) {
+                                //MARK: - disclosures
+                                if selectedIndex == 0 {
                                     ForEach(PassesSection.allCases) { section in
                                         switch section {
                                         case .adult:
@@ -233,151 +236,22 @@ struct PassesView: View {
                                             
                                         }
                                     }
-                                }
-                            }
-                        }
-                        .safeAreaPadding(.bottom, 50)
-                        
-                        
-                    case 1:
-                        ScrollView{
-                            VStack(spacing: 40) {
-                                HStack{
-                                    Image(systemName: "info.circle")
-                                    Text("Cég nevére kérhető számla")
-                                }
-                                .foregroundStyle(.blue)
-                                
-                                InfoBox(informationPresented: $informationPresented)
-                                
-                                VStack(spacing: 3){
-                                    
-                                    Button {
-                                        withAnimation {
-                                            disclosureSeven.toggle()
-                                        }
-                                    } label: {
-                                        UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 24, topTrailing: 24))
-                                            .foregroundStyle(.navBG)
-                                            .frame(width: UIScreen.main.bounds.width - 32, height: disclosureSeven ? 550 : 60)
-                                            .overlay {
-                                                VStack{
-                                                    HStack{
-                                                        Image(systemName: "person.circle.fill")
-                                                            .foregroundStyle(.purple)
-                                                        
-                                                        Text("Felnőtt (teljes árú)")
-                                                            .foregroundStyle(.white)
-                                                            .bold()
-                                                        
-                                                        Button {
-                                                            //active sheet
-                                                        } label: {
-                                                            Image(systemName: "info.circle")
-                                                        }
-                                                        
-                                                        Spacer()
-                                                        
-                                                        Image(systemName: disclosureSeven ? "chevron.up" :  "chevron.down")
-                                                            .bold()
-                                                            .foregroundStyle(.white)
-                                                        
-                                                    }
-                                                    .padding()
-                                                    
-                                                    if disclosureSeven {
-                                                        ForEach(0..<5) { _ in
-                                                            RoundedRectangle(cornerRadius: 24)
-                                                                .frame(width: UIScreen.main.bounds.width - 64, height: 70)
-                                                                .foregroundStyle(.black)
-                                                                .overlay {
-                                                                    HStack{
-                                                                        Image(systemName: "house")
-                                                                        
-                                                                        Text("Félhavi(15 napos) Budapest-bérlet")
-                                                                            .multilineTextAlignment(.leading)
-                                                                        
-                                                                        Text("5950 Ft")
-                                                                            .bold()
-                                                                            .foregroundStyle(.white)
-                                                                        
-                                                                        Image(systemName: "arrow.right.circle.fill")
-                                                                            .font(.title2)
-                                                                    }
-                                                                }
-                                                        }
-                                                    }
-                                                }
-                                                .padding(.vertical)
-                                            }
-                                    }
-                                    
-                                    
-                                    
-                                    Button {
-                                        withAnimation {
-                                            disclosureSix.toggle()
+                                } else {
+                                    ForEach(PassesSection.allCases.filter({ $0 == .adult || $0 == .havechild })) { section in
+                                        
+                                        if section == .adult {
+                                            PassesDisclosureButton(topLeading: 24, topTrailing: 24, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 550, disclosureIsOpen: $disclosureOne, sheetIsActive: $sheetOneIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue,sections: AdultSection.allCases)
                                             
+                                        } else {
+                                            
+                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24, disclosureHeight: 150, disclosureIsOpen: $disclosureFive, sheetIsActive: $sheetFiveIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: WithChildSection.allCases)
                                         }
-                                    } label: {
-                                        UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24,bottomLeading: 24, bottomTrailing: 24))
-                                            .foregroundStyle(.navBG)
-                                            .frame(width: UIScreen.main.bounds.width - 32, height: disclosureSix ? 150 : 60)
-                                            .overlay {
-                                                VStack{
-                                                    HStack{
-                                                        Image(systemName: "person.circle.fill")
-                                                            .foregroundStyle(.purple)
-                                                        
-                                                        Text("Kisgyerekes")
-                                                            .foregroundStyle(.white)
-                                                            .bold()
-                                                        
-                                                        Button {
-                                                            //active sheet
-                                                        } label: {
-                                                            Image(systemName: "info.circle")
-                                                        }
-                                                        
-                                                        Spacer()
-                                                        
-                                                        Image(systemName: disclosureSix ? "chevron.up" :  "chevron.down")
-                                                            .bold()
-                                                            .foregroundStyle(.white)
-                                                        
-                                                    }
-                                                    .padding()
-                                                    
-                                                    if disclosureSix {
-                                                        RoundedRectangle(cornerRadius: 24)
-                                                            .frame(width: UIScreen.main.bounds.width - 64, height: 70)
-                                                            .foregroundStyle(.black)
-                                                            .overlay {
-                                                                HStack{
-                                                                    Image(systemName: "house")
-                                                                    
-                                                                    Text("Pest vármegyebérlet kedvezményes")
-                                                                        .multilineTextAlignment(.leading)
-                                                                    
-                                                                    Text("5950 Ft")
-                                                                        .bold()
-                                                                        .foregroundStyle(.white)
-                                                                    
-                                                                    Image(systemName: "arrow.right.circle.fill")
-                                                                        .font(.title2)
-                                                                }
-                                                            }
-                                                    }
-                                                }
-                                                .padding(.vertical)
-                                            }
                                     }
                                 }
                             }
                         }
-                    default:
-                        EmptyView()
                     }
+                    .safeAreaPadding(.bottom, 50)
                 }
                 .padding(.top, 80)
             }
@@ -389,106 +263,3 @@ struct PassesView: View {
     PassesView()
 }
 
-
-
-struct PassesDisclosureButton<Section: TicketSection>: View {
-    let topLeading: CGFloat
-    let topTrailing: CGFloat
-    let bottomLeading: CGFloat
-    let bottomTrailing: CGFloat
-    let disclosureHeight: CGFloat
-    
-    @Binding var disclosureIsOpen: Bool
-    @Binding var sheetIsActive: Bool
-    let sheetText: String
-    let sheetSubtext: String
-    
-    let iconName: String
-    let title: String
-    
-    var sections: [Section]
-    var body: some View {
-        Button {
-            withAnimation {
-                disclosureIsOpen.toggle()
-            }
-        } label: {
-            UnevenRoundedRectangle(cornerRadii: .init(topLeading: topLeading, bottomLeading: bottomLeading ,bottomTrailing: bottomTrailing, topTrailing: topTrailing))
-                .foregroundStyle(.navBG)
-                .frame(width: UIScreen.main.bounds.width - 32, height: disclosureIsOpen ? disclosureHeight : 60)
-                .overlay {
-                    VStack(spacing: 5) {
-                        HStack{
-                            Image(systemName: iconName)
-                                .foregroundStyle(.purple)
-                            
-                            Text(title)
-                                .foregroundStyle(.white)
-                                .bold()
-                            
-                            Button {
-                                sheetIsActive.toggle()
-                            } label: {
-                                Image(systemName: "info.circle")
-                            }
-                            .sheet(isPresented: $sheetIsActive) {
-                                VStack{
-                                    HStack{
-                                        Text(sheetText)
-                                            .foregroundStyle(.black)
-                                        
-                                        Spacer()
-                                        
-                                        Button {
-                                            sheetIsActive = false
-                                        } label: {
-                                            Image(systemName: "xmark")
-                                        }
-                                        .foregroundStyle(.black)
-                                        
-                                    }
-                                    .padding()
-                                    Text(sheetSubtext)
-                                }
-                            }
-                            
-                            Spacer()
-                            
-                            Image(systemName: disclosureIsOpen ? "chevron.up" :  "chevron.down")
-                                .bold()
-                                .foregroundStyle(.white)
-                            
-                        }
-                        .padding()
-                        
-                        if disclosureIsOpen {
-                            ForEach(sections, id : \.id) { section in
-                                RoundedRectangle(cornerRadius: 24)
-                                    .frame(width: UIScreen.main.bounds.width - 64, height: 70)
-                                    .foregroundStyle(.black)
-                                    .overlay {
-                                        HStack{
-                                            Image(systemName: section.iconName)
-                                            
-                                            Text(section.id)
-                                               .multilineTextAlignment(.leading)
-                                            
-                                            Spacer()
-                                            
-                                            Text("\(section.priceLabel) Ft")
-                                                .bold()
-                                                .foregroundStyle(.white)
-                                            
-                                            Image(systemName: "arrow.right.circle.fill")
-                                                .font(.title2)
-                                        }
-                                        .padding()
-                                    }
-                            }
-                        }
-                    }
-                    .padding(.vertical)
-                }
-        }
-    }
-}
