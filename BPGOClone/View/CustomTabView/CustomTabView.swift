@@ -29,6 +29,7 @@ enum CustomTabSection: String, Identifiable, CaseIterable {
 }
 
 struct CustomTabView: View {
+    @ObservedObject var authVM: AuthViewModel
     @State private var selectedSection: CustomTabSection = .plan
     var body: some View {
         NavigationStack{
@@ -41,13 +42,13 @@ struct CustomTabView: View {
                         TravelPlanningView()
                         
                     case .favorite:
-                        FavoritesView()
+                        FavoritesView(authVM: authVM)
                         
                     case .ticket:
-                        MyTicketsView()
+                        MyTicketsView(authVM: authVM)
                         
                     case .others:
-                        OthersView()
+                        OthersView(authVM: authVM)
                     }
                     
                     Spacer()
@@ -94,5 +95,5 @@ struct CustomTabView: View {
 }
 
 #Preview {
-    CustomTabView()
+    CustomTabView(authVM: AuthViewModel())
 }

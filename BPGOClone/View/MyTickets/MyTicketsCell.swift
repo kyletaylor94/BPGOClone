@@ -16,6 +16,7 @@ struct MyTicketsCell: View {
     let navigateTo: AnyView
     var vote: Bool?
     
+    @ObservedObject var authVM: AuthViewModel
     var body: some View {
         VStack(spacing: 5) {
             Image(image)
@@ -102,7 +103,7 @@ struct MyTicketsCell: View {
                             }
                     }
                     .fullScreenCover(isPresented: $registerIsPresented) {
-                        RegisterSheet()
+                        RegisterSheet(authVM: authVM)
                     }
                 }
             }

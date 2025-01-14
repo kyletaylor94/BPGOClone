@@ -7,8 +7,27 @@
 
 import SwiftUI
 
+enum RegisterSection: String, Identifiable, CaseIterable {
+    case apple = "Folytatás Apple-lel"
+    case google = "Folytatás Google-lal"
+    case facebook = "Folytatás Facebookkal"
+    
+    var iconName: String {
+        switch self {
+        case .apple:
+            return "apple.logo"
+        case .google:
+            return "apple.logo"
+        case .facebook:
+            return "apple.logo"
+        }
+    }
+    var id: String { return self.rawValue }
+}
+
 struct RegisterSheet: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var authVM: AuthViewModel
     var body: some View {
         ZStack {
             Color.navBG.ignoresSafeArea()
@@ -37,47 +56,26 @@ struct RegisterSheet: View {
                     .frame(width: 300, height: 200)
                 
                 VStack(spacing: 15) {
-                    Capsule()
-                        .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                        .overlay {
-                            HStack{
-                                Image(systemName: "apple.logo")
-                                
-                                Text("Folytatás Apple-lel ")
-                                    .bold()
-                            }
-                            .font(.title3)
-                            .foregroundStyle(.white)
+                    ForEach(RegisterSection.allCases) { section in
+                        Button {
+                            authVM.authenticate()
+                            dismiss()
+                        } label: {
+                            Capsule()
+                                .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
+                                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                                .overlay {
+                                    HStack{
+                                        Image(systemName: section.iconName)
+                                        
+                                        Text(section.rawValue)
+                                            .bold()
+                                    }
+                                    .font(.title3)
+                                    .foregroundStyle(.white)
+                                }
                         }
-                    
-                    Capsule()
-                        .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                        .overlay {
-                            HStack{
-                                Image(systemName: "apple.logo")
-                                
-                                Text("Folytatás Google-lal ")
-                                    .bold()
-                            }
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                        }
-                    
-                    Capsule()
-                        .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                        .overlay {
-                            HStack{
-                                Image(systemName: "apple.logo")
-                                
-                                Text("Folytatás Facebookkal ")
-                                    .bold()
-                            }
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                        }
+                    }
                     
                     RoundedRectangle(cornerRadius: 14)
                         .frame(width: UIScreen.main.bounds.width - 32, height: 50)
@@ -97,10 +95,11 @@ struct RegisterSheet: View {
                 
                 Spacer()
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }
 
 #Preview {
-    RegisterSheet()
+    RegisterSheet(authVM: AuthViewModel())
 }

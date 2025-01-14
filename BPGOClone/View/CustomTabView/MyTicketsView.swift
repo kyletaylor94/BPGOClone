@@ -26,6 +26,7 @@ enum MyTicketsSection: Int, Identifiable, CaseIterable {
 struct MyTicketsView: View {
     @State private var selectedIndex: Int = 0
     @State private var registerIsPresented = false
+    @ObservedObject var authVM: AuthViewModel
     var body: some View {
         ZStack{
             Color.backGround.ignoresSafeArea()
@@ -92,9 +93,9 @@ struct MyTicketsView: View {
                 VStack{
                     switch selectedIndex {
                     case 0:
-                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true)
+                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true, authVM: authVM)
                     case 1:
-                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .used, title: "Lépj be a fiókodba és vásárolj jegyet!", subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(ContactDetailsView()))
+                        MyTicketsCell(registerIsPresented: $registerIsPresented, image: .used, title: "Lépj be a fiókodba és vásárolj jegyet!", subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(ContactDetailsView()), authVM: authVM)
                         
                     default:
                         Color.backGround.ignoresSafeArea()
@@ -109,5 +110,5 @@ struct MyTicketsView: View {
 
 
 #Preview {
-    MyTicketsView()
+    MyTicketsView(authVM: AuthViewModel())
 }

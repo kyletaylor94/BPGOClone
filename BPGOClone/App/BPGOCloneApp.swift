@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 @main
 struct BPGOCloneApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @StateObject var authVM = AuthViewModel()
     var body: some Scene {
         WindowGroup {
-            CustomTabView()
+            CustomTabView(authVM: authVM)
         }
     }
 }

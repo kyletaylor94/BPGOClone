@@ -44,6 +44,7 @@ enum OtherSections: String, Identifiable, CaseIterable {
 struct OthersView: View {
     @State private var registerIsPresented: Bool = false
     @State private var selectedSection: OtherSections? = nil
+    @ObservedObject var authVM: AuthViewModel
     var body: some View {
         ZStack {
             Color.backGround
@@ -86,7 +87,7 @@ struct OthersView: View {
                             }
                             .padding(.leading)
                             .fullScreenCover(isPresented: $registerIsPresented) {
-                                RegisterSheet()
+                                RegisterSheet(authVM: authVM)
                             }
                             
                         }
@@ -150,5 +151,5 @@ struct OthersView: View {
 }
 
 #Preview {
-    OthersView()
+    OthersView(authVM: AuthViewModel())
 }

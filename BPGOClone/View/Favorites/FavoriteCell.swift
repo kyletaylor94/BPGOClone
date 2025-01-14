@@ -12,7 +12,7 @@ struct FavoriteCell: View {
     let title: String
     let subTitle: String
     let buttonTitle: String
-    let navigateTo: AnyView
+   // let navigateTo: AnyView
     
     var body: some View {
         VStack(spacing: 12) {
@@ -35,9 +35,9 @@ struct FavoriteCell: View {
             Spacer()
             
             VStack{
-                NavigationLink {
-                    AnyView(navigateTo)
-                } label: {
+              //  NavigationLink {
+               //     AnyView(navigateTo)
+              //  } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(.button)
                         .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
@@ -48,7 +48,7 @@ struct FavoriteCell: View {
                                 .font(.title3)
                                 .bold()
                         }
-                }
+               // }
 
             }
             .padding(.bottom, 70)
