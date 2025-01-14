@@ -171,6 +171,7 @@ struct TicketAndPassesDetails<Section: TicketSection>: View {
                                         
                                         Text(section.id)
                                             .multilineTextAlignment(.leading)
+                                            .font(.subheadline)
                                         
                                         Spacer()
                                         

@@ -48,10 +48,10 @@ struct PassesDisclosureButton<Section: TicketSection>: View {
                                 Image(systemName: "info.circle")
                             }
                             .sheet(isPresented: $sheetIsActive) {
-                                VStack{
+                                VStack(alignment: .leading, spacing: 20) {
                                     HStack{
                                         Text(sheetText)
-                                            .foregroundStyle(.black)
+                                            .bold()
                                         
                                         Spacer()
                                         
@@ -60,12 +60,17 @@ struct PassesDisclosureButton<Section: TicketSection>: View {
                                         } label: {
                                             Image(systemName: "xmark")
                                         }
-                                        .foregroundStyle(.black)
                                         
                                     }
-                                    .padding()
                                     Text(sheetSubtext)
+                                        .font(.caption)
+                                        .multilineTextAlignment(.leading)
                                 }
+                                .foregroundStyle(.customBlackWhite)
+                                .padding()
+                                .presentationDetents([.height(200)])
+                                .presentationCornerRadius(24)
+                                .presentationDragIndicator(.visible)
                             }
                             
                             Spacer()

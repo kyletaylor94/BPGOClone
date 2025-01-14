@@ -71,8 +71,8 @@ struct MyTicketsCell: View {
                 }
               
                 HStack{
-                    Button {
-                        //buy
+                    NavigationLink {
+                        TicketsAndPassesView()
                     } label: {
                         RoundedRectangle(cornerRadius: 14)
                             .fill(.button)
@@ -85,6 +85,7 @@ struct MyTicketsCell: View {
                                     .font(.title3)
                             }
                     }
+
                     
                     Button {
                         registerIsPresented = true

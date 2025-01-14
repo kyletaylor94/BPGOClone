@@ -257,6 +257,7 @@ struct PassesView: View {
                 .padding(.top, 80)
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

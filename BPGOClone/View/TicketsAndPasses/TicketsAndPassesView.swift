@@ -51,15 +51,20 @@ struct TicketsAndPassesView: View {
         //MARK: - FIXME: put radius to the enum!
                             case .passes:
                                 
-                                TicketAndPassesButton(
-                                    topLeeading: 24,
-                                    topTrailing: 24,
-                                    bottomLeading: 24,
-                                    bottomTrailing: 0,
-                                    height: 80,
-                                    title: section.rawValue,
-                                    caption: section.captionText
-                                )
+                                NavigationLink {
+                                    PassesView()
+                                } label: {
+                                    TicketAndPassesButton(
+                                        topLeeading: 24,
+                                        topTrailing: 24,
+                                        bottomLeading: 24,
+                                        bottomTrailing: 0,
+                                        height: 80,
+                                        title: section.rawValue,
+                                        caption: section.captionText
+                                    )
+                                }
+
                                 
                             case .occasionstickets:
                                 
@@ -127,6 +132,7 @@ struct TicketsAndPassesView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
