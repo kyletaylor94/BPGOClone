@@ -212,7 +212,8 @@ struct PassesView: View {
                             InfoBox(informationPresented: $informationPresented, width: UIScreen.main.bounds.width - 74)
                             
                             VStack(spacing: 3) {
-                                //MARK: - disclosures
+    //MARK: - disclosures
+    //MARK: - FIXME: put radius to the enum!
                                 if selectedIndex == 0 {
                                     ForEach(PassesSection.allCases) { section in
                                         switch section {

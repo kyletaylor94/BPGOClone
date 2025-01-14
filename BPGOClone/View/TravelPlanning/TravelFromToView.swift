@@ -179,12 +179,12 @@ struct TravelFromToView: View {
                     
                     switch selectedIndex {
                     case 0:
-                        Text("hahó")
+                        Text("hey")
                     case 1:
-                        Text("csaávó")
+                        Text("ho")
                         
                     case 2:
-                        Text("gyááá")
+                        Text("hey")
                         
                     default:
                         Text("default")

@@ -65,7 +65,7 @@ struct CitySearcherView: View {
                 
                 ScrollView(.vertical,showsIndicators: true) {
                     VStack(spacing: 5) {
-                    //firstcell
+            //firstcell
                         UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 24, topTrailing: 24))
                             .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                             .overlay {
@@ -107,8 +107,6 @@ struct CitySearcherView: View {
                     }
                 }
                 .safeAreaPadding(.bottom, 120)
-                
-                
                 .padding()
             }
         }

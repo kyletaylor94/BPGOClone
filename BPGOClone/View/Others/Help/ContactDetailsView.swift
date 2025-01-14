@@ -7,30 +7,102 @@
 
 import SwiftUI
 
+enum ContactDetailsSection: String, Identifiable, CaseIterable {
+    case email = "E-mail"
+    case mobile = "Telefonszám"
+    case customercenters = "BKK Ügyfélközpontok"
+    
+    var iconName: String {
+        switch self {
+        case .email:
+            return "envelope"
+        case .mobile:
+            return "iphone"
+        case .customercenters:
+            return "map"
+        }
+    }
+    
+    var subTitle: String {
+        switch self {
+        case .email:
+            return "bkk@bkk.hu"
+        case .mobile:
+            return "+36 1 3 255 255"
+        case .customercenters:
+            return "Részletes információk"
+        }
+    }
+    
+    var topLeading: CGFloat {
+        switch self {
+        case .email:
+            return 24
+        case .mobile:
+            return 0
+        case .customercenters:
+            return 0
+        }
+    }
+    
+    var topTrailing: CGFloat {
+        switch self {
+        case .email:
+            return 24
+        case .mobile:
+            return 0
+        case .customercenters:
+            return 0
+        }
+    }
+    
+    var bottomLeading: CGFloat {
+        switch self {
+        case .email:
+            return 0
+        case .mobile:
+            return 0
+        case .customercenters:
+            return 24
+        }
+    }
+    
+    var bottomTrailing: CGFloat {
+        switch self {
+        case .email:
+            return 0
+        case .mobile:
+            return 0
+        case .customercenters:
+            return 24
+        }
+    }
+    
+    var id: String { return self.rawValue }
+}
+
 struct ContactDetailsView: View {
-    @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            VStack(spacing: -120) {
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
-                    .fill(.navBG)
-                    .frame(width: UIScreen.main.bounds.width, height: 100)
-                    .ignoresSafeArea(edges: .top)
+            
+            VStack(spacing: 3) {
+                CustomNavTitle(title: "Elérhetőségek")
+                    .ignoresSafeArea()
                 
-                VStack(spacing: 3){
-                    UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24,bottomLeading: 0, bottomTrailing: 0, topTrailing: 24))
+                ForEach(ContactDetailsSection.allCases) { section in
+                    UnevenRoundedRectangle(cornerRadii: .init(topLeading: section.topLeading,bottomLeading: section.bottomLeading, bottomTrailing: section.bottomTrailing, topTrailing: section.topTrailing))
                         .fill(.navBG)
                         .frame(width: UIScreen.main.bounds.width - 32, height: 90)
                         .overlay {
                             HStack(spacing: 16) {
-                                Image(systemName: "envelope")
+                                Image(systemName: section.iconName)
                                     .font(.title3)
                                 
                                 VStack(alignment: .leading, spacing: 5) {
-                                    Text("E-mail")
-                                    Text("bkk@bkk.hu")
+                                    Text(section.rawValue)
+                                    Text(section.subTitle)
                                 }
                                 
                                 Spacer()
@@ -38,65 +110,9 @@ struct ContactDetailsView: View {
                             .foregroundStyle(.white)
                             .padding()
                         }
-                    
-                    UnevenRoundedRectangle(cornerRadii: .init(topLeading: 0,bottomLeading: 0, bottomTrailing: 0, topTrailing: 0))
-                        .fill(.navBG)
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 90)
-                        .overlay {
-                            HStack(spacing: 16) {
-                                Image(systemName: "iphone")
-                                    .font(.title3)
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text("Telefonszám")
-                                    Text("+36 1 3 255 255")
-                                }
-                                
-                                Spacer()
-                            }
-                            .foregroundStyle(.white)
-                            .padding()
-                        }
-                    
-                    UnevenRoundedRectangle(cornerRadii: .init(topLeading: 0,bottomLeading: 24, bottomTrailing: 24, topTrailing: 0))
-                        .fill(.navBG)
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 90)
-                        .overlay {
-                            HStack(spacing: 16) {
-                                Image(systemName: "map")
-                                    .font(.title3)
-                                //linkbutton!
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text("BKK Ügyfélközpontok")
-                                    Text("Részletes információk")
-                                }
-                                
-                                Spacer()
-                            }
-                            .foregroundStyle(.white)
-                            .padding()
-                        }
-                    
                 }
             }
             .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .foregroundStyle(.white)
-
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Elérhetőségek")
-                        .font(.title3)
-                        .foregroundStyle(.white)
-                }
-            }
         }
     }
 }

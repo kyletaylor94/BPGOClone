@@ -46,13 +46,14 @@ struct MyTicketsView: View {
                                 
                                 Spacer()
                                 
-                                Button {
-                                    //
+                                NavigationLink {
+                                    HowMobileTicketWorksView()
                                 } label: {
                                     Image(systemName: "info.circle")
                                         .font(.title3)
                                         .foregroundStyle(.white)
                                 }
+
                             }
                             .padding()
                             

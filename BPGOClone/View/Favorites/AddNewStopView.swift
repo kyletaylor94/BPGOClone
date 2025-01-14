@@ -11,42 +11,14 @@ struct AddNewStopView: View {
     @Environment(\.dismiss) var dismiss
     @State private var text: String = ""
     var body: some View {
-        ZStack{
+        ZStack(alignment: .top){
             Color.backGround.ignoresSafeArea()
             
+            CustomNavTitle(title: "Kedvenc megálló hozzáadása")
+                .ignoresSafeArea()
+            
             VStack{
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 24))
-                    .foregroundStyle(.navBG)
-                    .frame(width: UIScreen.main.bounds.width, height: 100)
-                    .ignoresSafeArea(edges: .top)
-                    .overlay {
-                        VStack(alignment: .center) {
-                            HStack{
-                                Button {
-                                    dismiss()
-                                } label: {
-                                    Image(systemName: "chevron.left")
-                                        .font(.title3)
-                                        .foregroundStyle(.white)
-                                }
-                                
-                                Spacer()
-                                
-                                Text("Kedvenc megálló hozzáadása")
-                                    .font(.title2)
-                                    .foregroundStyle(.customBlackWhite)
-                                    .fontWeight(.semibold)
-                                
-                                Spacer()
-                                
-                            }
-                            .padding()
-                            
-                            Spacer()
-                        }
-                    }
-                
-                
+               
                 HStack{
                     Text("Add meg a megálló nevét")
                         .font(.subheadline)
@@ -135,6 +107,7 @@ struct AddNewStopView: View {
                 .padding(.top)
             }
             .navigationBarBackButtonHidden()
+            .padding(.top, 70)
         }
     }
 }

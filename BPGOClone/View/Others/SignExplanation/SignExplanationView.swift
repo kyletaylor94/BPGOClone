@@ -79,66 +79,47 @@ struct SignExplanationView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            VStack(spacing: 0) {
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
-                    .fill(.navBG)
-                    .frame(width: UIScreen.main.bounds.width, height: 100)
-                    .ignoresSafeArea(edges: .top)
+            CustomNavTitle(title: "Jelmagyarázat")
+                .ignoresSafeArea()
+            
+            VStack{
                 
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Járatok")
+                        .foregroundStyle(.white)
+                        .bold()
+                        .font(.title3)
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem()], alignment: .leading, spacing: 20) {
+                        ForEach(SignExplanationSection.allCases) { section in
+                            HStack{
+                                Circle()
+                                    .foregroundStyle(.blue)
+                                    .frame(width: 25, height: 25)
+                                Text(section.rawValue)
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Mit jelöl az időpontok színe?")
+                            .foregroundStyle(.white)
+                            .font(.title3)
+                            .bold()
+                        
+                        VStack(alignment: .leading, spacing: 12) {
+                            ForEach(SignExplationCellSection.allCases) { section in
+                                SignExplanationCell(icon: section.icon, title: section.rawValue, subTitle: section.subTitle, color: section.color)
+                            }
+                        }
+                    }
+                    .padding(.top)
+                }
+                .padding(.leading)
             }
             .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundStyle(.white)
-                    }
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Jelmagyarázat")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                }
-            }
-            
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Járatok")
-                    .foregroundStyle(.white)
-                    .bold()
-                    .font(.title3)
-                
-                LazyVGrid(columns: [GridItem(), GridItem()], alignment: .leading, spacing: 20) {
-                    ForEach(SignExplanationSection.allCases) { section in
-                        HStack{
-                            Circle()
-                                .foregroundStyle(.blue)
-                                .frame(width: 25, height: 25)
-                            Text(section.rawValue)
-                                .foregroundStyle(.white)
-                        }
-                    }
-                }
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Mit jelöl az időpontok színe?")
-                        .foregroundStyle(.white)
-                        .font(.title3)
-                        .bold()
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        ForEach(SignExplationCellSection.allCases) { section in
-                            SignExplanationCell(icon: section.icon, title: section.rawValue, subTitle: section.subTitle, color: section.color)
-                        }
-                    }
-                }
-                .padding(.top)
-            }
-            .padding(.leading)
-            
+            .padding(.top, 90)
         }
     }
 }

@@ -77,32 +77,9 @@ struct HowMobileTicketWorksView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            VStack(spacing: 0) {
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
-                    .fill(.navBG)
-                    .frame(width: UIScreen.main.bounds.width, height: 100)
-                    .ignoresSafeArea(edges: .top)
-                
-            }
-            .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundStyle(.white)
-                    }
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Hogyan működik?")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                }
-            }
-            
+            CustomNavTitle(title: "Jelmagyarázat")
+                .ignoresSafeArea()
+                        
             VStack(spacing: 70) {
                 TabView(selection: $currentIndex) {
                     ForEach(HowMobileTicketWorksSection.allCases) { section in
@@ -168,6 +145,7 @@ struct HowMobileTicketWorksView: View {
                 Spacer()
                 
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

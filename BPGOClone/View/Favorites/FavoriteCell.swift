@@ -13,7 +13,6 @@ struct FavoriteCell: View {
     let subTitle: String
     let buttonTitle: String
     let navigateTo: AnyView
-   // let void: () -> Void
     
     var body: some View {
         VStack(spacing: 12) {
@@ -36,11 +35,6 @@ struct FavoriteCell: View {
             Spacer()
             
             VStack{
-//                Button {
-//                    void()
-//                } label: {
-//
-//                }
                 NavigationLink {
                     AnyView(navigateTo)
                 } label: {

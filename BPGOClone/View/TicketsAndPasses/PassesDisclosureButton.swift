@@ -89,6 +89,7 @@ struct PassesDisclosureButton<Section: TicketSection>: View {
                                             Text(section.id)
                                                 .font(.subheadline)
                                                 .multilineTextAlignment(.leading)
+                                                .foregroundStyle(.customBlackWhite)
                                             
                                             Spacer()
                                             
@@ -98,6 +99,8 @@ struct PassesDisclosureButton<Section: TicketSection>: View {
                                             
                                             Image(systemName: "arrow.right.circle.fill")
                                                 .font(.title2)
+                                                .foregroundStyle(.customBlackWhite)
+
                                         }
                                         .padding()
                                     }
