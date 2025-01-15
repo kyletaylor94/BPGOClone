@@ -17,6 +17,7 @@ struct MyTicketsCell: View {
     var vote: Bool?
     
     @ObservedObject var authVM: AuthViewModel
+    
     var body: some View {
         VStack(spacing: 5) {
             Image(image)
@@ -42,7 +43,8 @@ struct MyTicketsCell: View {
                     .bold()
                     .padding(.top)
             }
-
+            
+       
             Spacer()
             
             VStack(spacing: 60) {
@@ -112,5 +114,10 @@ struct MyTicketsCell: View {
         .multilineTextAlignment(.center)
         .padding(.top)
     }
+}
+
+#Preview {
+    MyTicketsCell(registerIsPresented: .constant(false), image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true, authVM: AuthViewModel())
+
 }
 
