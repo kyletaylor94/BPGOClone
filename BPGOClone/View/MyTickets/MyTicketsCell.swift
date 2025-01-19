@@ -10,22 +10,20 @@ import SwiftUI
 struct MyTicketsCell: View {
     @Binding var registerIsPresented: Bool
     let image: ImageResource
-    let title: String
     let subTitle: String
-    let howDoesItWorkTitle: String
-    let navigateTo: AnyView
     var vote: Bool?
+    var selectedIndex: Int
     
     @ObservedObject var authVM: AuthViewModel
-    
+
     var body: some View {
         VStack(spacing: 5) {
             Image(image)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 220, height: 220)
-            
-            Text(title)
+                            
+            Text("Lépj be a fiókodba, és vásárolj jegyet!")
                 .font(.title2)
                 .foregroundStyle(.white)
                 .bold()
@@ -36,14 +34,49 @@ struct MyTicketsCell: View {
                 .padding(.horizontal)
             
             NavigationLink {
-                navigateTo
+                HowMobileTicketWorksView()
             } label: {
-                Text(howDoesItWorkTitle)
+                Text("Hogyan működik a mobiljegy?")
                     .foregroundStyle(.white)
                     .bold()
                     .padding(.top)
             }
             
+            VStack{
+                NavigationLink(destination: {
+                    TicketsAndPassesView()
+                }, label: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .overlay {
+                            Text("Vásárlás")
+                                .font(.title3)
+                                .foregroundStyle(.customWhiteBlack)
+                                .bold()
+                        }
+                        .foregroundStyle(.button)
+                })
+                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+
+                
+                NavigationLink(destination: {
+                    HowAppDoesWorkView()
+                }, label: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(.navBG)
+                        .stroke(.white, style: StrokeStyle())
+                        .overlay {
+                            Text("Hogyan működik?")
+                                .bold()
+                                .font(.title3)
+                                .foregroundStyle(.customBlackWhite)
+                        }
+                })
+                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                .opacity(selectedIndex == 1 ? 0 : 1)
+
+            }
+            .padding(.top)
+            .opacity(authVM.isAuthenticated ? 1 : 0)
        
             Spacer()
             
@@ -73,41 +106,43 @@ struct MyTicketsCell: View {
                     }
                 }
               
-                HStack{
-                    NavigationLink {
-                        TicketsAndPassesView()
-                    } label: {
-                        RoundedRectangle(cornerRadius: 14)
-                            .fill(.button)
-                            .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                            .frame(width: 200, height: 57)
-                            .overlay {
-                                Text("Vásárlás")
-                                    .bold()
-                                    .foregroundStyle(.navBG)
-                                    .font(.title3)
-                            }
+                    HStack{
+                        NavigationLink {
+                            TicketsAndPassesView()
+                        } label: {
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(.button)
+                                .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
+                                .frame(width: 200, height: 57)
+                                .overlay {
+                                    Text("Vásárlás")
+                                        .bold()
+                                        .foregroundStyle(.navBG)
+                                        .font(.title3)
+                                }
+                        }
+                        
+                        
+                        Button {
+                            registerIsPresented = true
+                        } label: {
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(.navBG)
+                                .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
+                                .frame(width: 200, height: 57)
+                                .overlay {
+                                    Text("Belépés")
+                                        .bold()
+                                        .foregroundStyle(.white)
+                                        .font(.title3)
+                                }
+                        }
+                        .fullScreenCover(isPresented: $registerIsPresented) {
+                            RegisterSheet(authVM: authVM)
+                        }
                     }
+                    .opacity(!authVM.isAuthenticated ? 1 : 0)
 
-                    
-                    Button {
-                        registerIsPresented = true
-                    } label: {
-                        RoundedRectangle(cornerRadius: 14)
-                            .fill(.navBG)
-                            .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                            .frame(width: 200, height: 57)
-                            .overlay {
-                                Text("Belépés")
-                                    .bold()
-                                    .foregroundStyle(.white)
-                                    .font(.title3)
-                            }
-                    }
-                    .fullScreenCover(isPresented: $registerIsPresented) {
-                        RegisterSheet(authVM: authVM)
-                    }
-                }
             }
             .padding(.bottom, 75)
         }
@@ -117,7 +152,6 @@ struct MyTicketsCell: View {
 }
 
 #Preview {
-    MyTicketsCell(registerIsPresented: .constant(false), image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true, authVM: AuthViewModel())
-
+    MyTicketsCell(registerIsPresented: .constant(false), image: .unused, subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", vote: true, selectedIndex: 0, authVM: AuthViewModel())
 }
 

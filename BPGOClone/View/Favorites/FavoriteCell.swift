@@ -12,7 +12,8 @@ struct FavoriteCell: View {
     let title: String
     let subTitle: String
     let buttonTitle: String
-   // let navigateTo: AnyView
+    
+    @ObservedObject var viewModel: AuthViewModel
     
     var body: some View {
         VStack(spacing: 12) {
@@ -35,9 +36,13 @@ struct FavoriteCell: View {
             Spacer()
             
             VStack{
-              //  NavigationLink {
-               //     AnyView(navigateTo)
-              //  } label: {
+                NavigationLink {
+                    if viewModel.isAuthenticated {
+                        AddNewStopView()
+                    } else {
+                        RegisterSheet(authVM: viewModel)
+                    }
+                } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(.button)
                         .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
@@ -48,8 +53,7 @@ struct FavoriteCell: View {
                                 .font(.title3)
                                 .bold()
                         }
-               // }
-
+                }
             }
             .padding(.bottom, 70)
         }

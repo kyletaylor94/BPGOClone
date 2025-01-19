@@ -95,53 +95,65 @@ enum ProfileSection: String, Identifiable, CaseIterable {
 
 struct MyAccountView: View {
     @ObservedObject var authVM: AuthViewModel
-    
+    @Environment(\.dismiss) var dismiss
+    @State private var alertPresented: Bool = false
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.backGround.ignoresSafeArea()
-            
-            CustomNavTitle(title: "Fiókom")
-                .ignoresSafeArea()
-            
-            VStack(spacing: 3) {
-                ForEach(ProfileSection.allCases) { section in
-                    if section == .biometricauth {
-                        Rectangle()
-                            .fill(.navBG)
-                            .frame(width: UIScreen.main.bounds.width - 32, height: 98)
-                            .overlay {
-                                HStack{
-                                    Toggle(isOn: .constant(true)) {
-                                        HStack{
-                                            Image(systemName: section.iconName)
-                                            Text(section.rawValue)
+        ZStack{
+            ZStack(alignment: .top) {
+                Color.backGround.ignoresSafeArea()
+                
+                CustomNavTitle(title: "Fiókom")
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 3) {
+                    ForEach(ProfileSection.allCases) { section in
+                        if section == .biometricauth {
+                            Rectangle()
+                                .fill(.navBG)
+                                .frame(width: UIScreen.main.bounds.width - 32, height: 98)
+                                .overlay {
+                                    HStack{
+                                        Toggle(isOn: .constant(true)) {
+                                            HStack{
+                                                Image(systemName: section.iconName)
+                                                Text(section.rawValue)
+                                            }
                                         }
                                     }
+                                    .padding()
                                 }
-                                .padding()
-                            }
-                    } else {
-                        CustomReuseableButton(text: section.rawValue, icon: section.iconName, topLeading: section.topLeading, topTrailing: section.topTrailing, bottomLeading: section.bottomLeading, bottomTrailing: section.bottomTrailing, height: section.height)
+                        } else {
+                            CustomReuseableButton(text: section.rawValue, icon: section.iconName, topLeading: section.topLeading, topTrailing: section.topTrailing, bottomLeading: section.bottomLeading, bottomTrailing: section.bottomTrailing, height: section.height)
+                        }
                     }
-                }
-                
-                Spacer()
-                
-                Button {
-                    authVM.logOut()
-                } label: {
-                    HStack{
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                        Text("Kijelentkezés")
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            alertPresented.toggle()
+                        }
+                    } label: {
+                        HStack{
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                            Text("Kijelentkezés")
+                        }
                     }
+                    .bold()
+                    .foregroundStyle(.customBlackWhite)
+                    .padding(.bottom)
+                    
                 }
-                .bold()
-                .foregroundStyle(.customBlackWhite)
-                .padding(.bottom)
-
+                .padding(.top, 90)
+                .navigationBarBackButtonHidden()
             }
-            .padding(.top, 90)
-            .navigationBarBackButtonHidden()
+            .opacity(alertPresented ? 0.5 : 1)
+            
+            SignOutAlert(authVM: authVM, showAlert: $alertPresented, dismiss: {
+                dismiss()
+            })
+                .opacity(alertPresented ? 1 : 0)
+                .scaleEffect(alertPresented ? 1 : 0)
         }
     }
 }

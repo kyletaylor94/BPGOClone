@@ -140,7 +140,7 @@ struct OthersView: View {
                                 AllTraficChangesView()
                                 
                             case .notifications:
-                                Text("helló")
+                                NotificationsView()
                                 
                             case .canwehelp:
                                 CanWeHelpView()

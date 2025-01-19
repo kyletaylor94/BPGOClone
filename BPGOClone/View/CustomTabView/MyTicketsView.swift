@@ -93,20 +93,23 @@ struct MyTicketsView: View {
                 VStack{
                     switch selectedIndex {
                     case 0:
-                        if authVM.isAuthenticated {
-                            MyTicketsCellAuth(image: .unused, title: "Jelenleg nincs felhasználható jegyed", subTitle: "Készül fel a következő utazásodra, vásárolj jegyet vagy bérletet", howDoesItWork: true)
-                        } else {
-                            MyTicketsCell(registerIsPresented: $registerIsPresented, image: .unused, title: "Lépj be a fiókodba, és vásárolj jegyet!", subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(HowAppDoesWorkView()), vote: true, authVM: authVM)
-                        }
+                        MyTicketsCell(
+                            registerIsPresented: $registerIsPresented,
+                            image: .unused,
+                            subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+                            selectedIndex: 0,
+                            authVM: authVM
+                        )
                     case 1:
-                        if authVM.isAuthenticated {
-                            MyTicketsCellAuth(image: .used, title: "Nincs még használt jegyed", subTitle: "Itt látod majd a felhasznált jegyeidet és bérleteidet.")
-                        } else {
-                            MyTicketsCell(registerIsPresented: $registerIsPresented, image: .used, title: "Lépj be a fiókodba és vásárolj jegyet!", subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.", howDoesItWorkTitle: "Hogyan működik a mobiljegy?", navigateTo: AnyView(ContactDetailsView()), authVM: authVM)
-                        }
-                        
+                        MyTicketsCell(
+                            registerIsPresented: $registerIsPresented,
+                            image: .used,
+                            subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+                            selectedIndex: 1,
+                            authVM: authVM
+                        )
                     default:
-                        Color.backGround.ignoresSafeArea()
+                        EmptyView()
                     }
                 }
                 

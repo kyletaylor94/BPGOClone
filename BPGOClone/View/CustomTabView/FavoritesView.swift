@@ -31,35 +31,27 @@ struct FavoritesView: View {
                 .padding(.top, -50)
             
             VStack{
-                
                 switch selectedIndex {
                     
                 case 0:
-                    NavigationLink {
-                        if authVM.isAuthenticated {
-                            AddNewStopView()
-                        } else {
-                            RegisterSheet(authVM: authVM)
-                        }
-                    } label: {
-                        FavoriteCell(
-                            image: .stops,
-                            title: "Állítsd be kedvenc megállóidat!",
-                            subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.",
-                            buttonTitle: "Új megálló hozzáadása")
-                    }
-
+                    FavoriteCell(
+                        image: .stops,
+                        title: "Állítsd be kedvenc megállóidat!",
+                        subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.",
+                        buttonTitle: "Új megálló hozzáadása",
+                        viewModel: authVM
+                    )
+                    
                                       
                 case 1:
-                    NavigationLink {
-                        if authVM.isAuthenticated {
-                            EmptyView()
-                        } else {
-                            RegisterSheet(authVM: authVM)
-                        }
-                    } label: {
-                        FavoriteCell(image: .departures, title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!", subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.", buttonTitle: "Új járat hozzáadása")
-                    }
+                    FavoriteCell(
+                        image: .departures,
+                        title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!",
+                        subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.",
+                        buttonTitle: "Új járat hozzáadása",
+                        viewModel: authVM
+                    )
+
 
                 default:
                     Color.backGround.ignoresSafeArea()

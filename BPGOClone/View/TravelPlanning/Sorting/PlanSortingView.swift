@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+enum PlanSortingSection: String, CaseIterable, Identifiable {
+    case socialtravel = "Közösségi közleketés"
+    case sharedbikeandscooter = "Megosztott kerékpár és roller"
+    case tickettransfer = "Jegyértékesítés"
+    case bpinfo = "Budapest-infó"
+    
+    var iconName: String {
+        switch self {
+        case .socialtravel:
+            return "bus"
+        case .sharedbikeandscooter:
+            return "bicycle"
+        case .tickettransfer:
+            return "ticket"
+        case .bpinfo:
+            return "info.circle"
+        }
+    }
+    
+    var id: String { return self.rawValue }
+}
+
 struct PlanSortingView: View {
     
     var body: some View {
@@ -20,8 +42,8 @@ struct PlanSortingView: View {
                     .bold()
                     .padding(.leading)
                 
-                VStack(spacing: -20) {
-                    ForEach(0..<4) { _ in
+                VStack(spacing: 12) {
+                    ForEach(PlanSortingSection.allCases) { section in
                         DisclosureGroup {
                             VStack(alignment: .leading, spacing: 12) {
                                 ForEach(0..<3) { _ in
@@ -42,9 +64,9 @@ struct PlanSortingView: View {
                             
                         } label: {
                             HStack{
-                                Image(systemName: "bus")
+                                Image(systemName: section.iconName)
                                 
-                                Text("Közösségi közlekedés")
+                                Text(section.rawValue)
                                 
                                 Spacer()
                                 
@@ -52,27 +74,32 @@ struct PlanSortingView: View {
                             .foregroundStyle(.white)
                             .bold()
                         }
-                        .padding()
+                        
+                        .padding(.horizontal)
                     }
                 }
                 
-                Text("Nézetváltás")
-                    .foregroundStyle(.white)
-                    .bold()
-                    .padding(.leading, 20)
-                HStack{
-                    Image(systemName: "globe")
+                VStack(alignment: .leading) {
+                    Text("Nézetváltás")
+                        .foregroundStyle(.white)
+                        .bold()
+                        .padding(.leading, 20)
                     
-                    Text("Műhöldkép")
+                    HStack{
+                        Image(systemName: "globe")
+                        
+                        Text("Műhöldkép")
+                        
+                        Spacer()
+                        
+                        Rectangle()
+                            .frame(width: 20, height: 20)
+                    }
+                    .padding(.horizontal)
                     
                     Spacer()
-                    
-                    Rectangle()
-                        .frame(width: 20, height: 20)
                 }
-                .padding(.horizontal)
-                
-                Spacer()
+                .padding(.top)
             }
             .padding(.top)
         }
