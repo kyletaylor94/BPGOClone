@@ -7,7 +7,29 @@
 
 import SwiftUI
 
+enum SettingsSection: String, CaseIterable, Identifiable {
+    case notifications = "Értesítések beállítása"
+    case creditcards = "Bannkkártyák"
+    case billing = "Számlázási adatok"
+    case widget = "Widget"
+    
+    var iconName: String {
+        switch self {
+        case .notifications:
+            return "bell"
+        case .creditcards:
+            return "creditcard"
+        case .billing:
+            return "document.on.document"
+        case .widget:
+            return "widget.small"
+        }
+    }
+    var id: String { return self.rawValue }
+}
+
 struct SettingsView: View {
+    @ObservedObject var authVM: AuthViewModel
     @State private var themeIsPresented = false
     @State private var languageIsPresenter = false
     @State private var nearbyDeparturesIsPresented = false
@@ -19,14 +41,49 @@ struct SettingsView: View {
             CustomNavTitle(title: "Beállítások")
                 .ignoresSafeArea()
             
-            VStack{
+            ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack(spacing: 3) {
-                    
-                    Button(action: {
-                        themeIsPresented.toggle()
-                    }, label: {
-                        CustomReuseableButton(text: "Megjelenés", icon: "sun.lefthalf.filled", topLeading: 24, topTrailing: 24, bottomLeading: 0, bottomTrailing: 0, height: 50)
+                    if authVM.isAuthenticated {
+                        ForEach(SettingsSection.allCases) { section in
+                            NavigationLink {
+                                switch section {
+                                case .notifications:
+                                    NotificationSettingsView()
+                                case .creditcards:
+                                    CreditCardsView()
+                                case .billing:
+                                    BillingSettingsView()
+                                case .widget:
+                                    WidgetSettingsView()
+                                }
+                            } label: {
+                                CustomReuseableButton(
+                                    text: section.rawValue,
+                                    icon: section.iconName,
+                                    topLeading: section == .notifications ? 24 : 0,
+                                    topTrailing: section == .notifications ? 24 : 0,
+                                    bottomLeading: 0,
+                                    bottomTrailing: 0
+                                )
+                            }
+                        }
+                    }
+                
+                    Button(
+                        action: {
+                            themeIsPresented.toggle()
+                        },
+                        label: {
+                            CustomReuseableButton(
+                                text: "Megjelenés",
+                                icon: "sun.lefthalf.filled",
+                                topLeading: authVM.isAuthenticated ? 0 : 24,
+                                topTrailing: authVM.isAuthenticated ? 0 : 24,
+                                bottomLeading: 0,
+                                bottomTrailing: 0,
+                                height: 50
+                            )
                     })
                     .sheet(isPresented: $themeIsPresented) {
                         ThemeView()
@@ -40,7 +97,15 @@ struct SettingsView: View {
                     Button {
                         languageIsPresenter.toggle()
                     } label: {
-                        CustomReuseableButton(text: "Nyelv", icon: "translate", topLeading: 0, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24, height: 50)
+                        CustomReuseableButton(
+                            text: "Nyelv",
+                            icon: "translate",
+                            topLeading: 0,
+                            topTrailing: 0,
+                            bottomLeading: 24,
+                            bottomTrailing: 24,
+                            height: 50
+                        )
                     }
                     .sheet(isPresented: $languageIsPresenter) {
                         LanguageView()
@@ -112,13 +177,60 @@ struct SettingsView: View {
                             .padding()
                         }
                     
-                    VStack{
+                    if authVM.isAuthenticated {
+                        VStack{
+                            RoundedRectangle(cornerRadius: 24)
+                                .fill(.navBG)
+                                .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
+                                .frame(width: UIScreen.main.bounds.width - 32, height: 115)
+                                .overlay {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Toggle(isOn: .constant(true)) {
+                                            Text("Súgósáv megjelenítése")
+                                                .foregroundStyle(.white)
+                                                .fontWeight(.semibold)
+                                        }
+                                        .tint(.button)
+                                        
+                                        Text("A jegyek és bérletek felett megjelenő használati információkat tartalmazó sáv")
+                                            .foregroundStyle(.white)
+                                            .fontWeight(.light)
+                                    }
+                                    .padding()
+                                }
+                        }
+                    }
+                    
+                    VStack(spacing: 3){
                         NavigationLink {
                             DocumentsView()
                         } label: {
-                            CustomReuseableButton(text: "Dokumentumok", icon: "document", topLeading: 24, topTrailing: 24, bottomLeading: 24, bottomTrailing: 24, height: 53)
+                            CustomReuseableButton(
+                                text: "Dokumentumok",
+                                icon: "document",
+                                topLeading: 24,
+                                topTrailing: 24,
+                                bottomLeading: authVM.isAuthenticated ? 0 : 24,
+                                bottomTrailing: authVM.isAuthenticated ? 0 : 24,
+                                height: 53
+                            )
                         }
                         
+                        if authVM.isAuthenticated {
+                            Button {
+                                //delete profile
+                            } label: {
+                                CustomReuseableButton(
+                                    text: "Fiók törtlése",
+                                    icon: "heart.slash",
+                                    topLeading: 0,
+                                    topTrailing: 0,
+                                    bottomLeading: 24,
+                                    bottomTrailing: 24,
+                                    height: 53
+                                )
+                            }
+                        }
                     }
                     .padding(.top)
                     
@@ -136,6 +248,6 @@ struct SettingsView: View {
 
 #Preview {
     NavigationStack{
-        SettingsView()
+        SettingsView(authVM: AuthViewModel())
     }
 }

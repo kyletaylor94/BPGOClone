@@ -119,6 +119,7 @@ struct OthersView: View {
                                             .bold()
                                             .foregroundStyle(.customBlackWhite)
                                         Text("joe@example.com")
+                                            .foregroundStyle(.primary)
                                     }
                                     
                                     Spacer()
@@ -146,7 +147,7 @@ struct OthersView: View {
                                 CanWeHelpView()
                                 
                             case .settings:
-                                SettingsView()
+                                SettingsView(authVM: authVM)
                                 
                             case .signexplanation:
                                 SignExplanationView()

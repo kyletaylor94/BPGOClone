@@ -77,10 +77,11 @@ struct HowMobileTicketWorksView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            CustomNavTitle(title: "Jelmagyarázat")
-                .ignoresSafeArea()
-                        
             VStack(spacing: 70) {
+                CustomNavTitle(title: "Hogyan működik?")
+                    .ignoresSafeArea()
+                
+                
                 TabView(selection: $currentIndex) {
                     ForEach(HowMobileTicketWorksSection.allCases) { section in
                         VStack(spacing: 20) {
@@ -102,6 +103,7 @@ struct HowMobileTicketWorksView: View {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
+                .toolbarVisibility(.hidden, for: .tabBar)
                 
                 
                 VStack(spacing: 30) {

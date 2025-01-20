@@ -12,8 +12,26 @@ struct NotificationsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Értesítéseim")
+            HStack{
+                CustomNavTitle(title: "Értesítéseim")
+                    .overlay {
+                        HStack{
+                            Spacer()
+                            Button {
+                                //
+                            } label: {
+                                Image(systemName: "gear")
+                                    .foregroundStyle(.customBlackWhite)
+                                    .font(.title3)
+                            }
+                        }
+                        .padding(.top, 45)
+                        .padding()
+                    }
+
+            }
                 .ignoresSafeArea()
+            
             VStack{
                 Spacer()
                 Text("Nincsenek értesítéseid")
@@ -21,18 +39,6 @@ struct NotificationsView: View {
 
             }
             .navigationBarBackButtonHidden()
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    //settings
-                } label: {
-                    Image(systemName: "gear")
-                }
-                .padding(.top, 20)
-
-                .foregroundStyle(.customBlackWhite)
-            }
         }
     }
 }
