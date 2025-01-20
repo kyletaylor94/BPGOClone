@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum MyTicketsSection: Int, Identifiable, CaseIterable {
+enum MyTicketsSection: Int, SelectorSection {
     case unused
     case used
     
@@ -62,56 +62,31 @@ struct MyTicketsView: View {
                         }
                     }
                 
-                VStack(spacing: 0) {
-                    HStack(spacing: 112) {
-                        ForEach(MyTicketsSection.allCases) { section in
-                            Button(action: {
-                                withAnimation(.snappy) {
-                                    selectedIndex = section.rawValue
-                                }
-                            }, label: {
-                                Text(section.titleName)
-                                    .padding()
-                                    .foregroundStyle(selectedIndex == section.rawValue ? .white : .gray)
-                            })
-                        }
-                    }
-                    Rectangle()
-                        .frame(width: UIScreen.main.bounds.width, height: 1)
-                        .foregroundStyle(.gray)
-                    
-                    Rectangle()
-                        .frame(width: UIScreen.main.bounds.width  / CGFloat(MyTicketsSection.allCases.count ), height: 1.0)
-                        .offset(x: CGFloat(selectedIndex) * UIScreen.main.bounds.width / CGFloat(MyTicketsSection.allCases.count))
-                        .padding(.trailing, 215)
-                        .foregroundStyle(.white)
-                    
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, -50)
+                SelectorView(selectedIndex: $selectedIndex, sections: MyTicketsSection.allCases)
+                    .padding(.top, -50)
                 
-                VStack{
-                    switch selectedIndex {
-                    case 0:
-                        MyTicketsCell(
-                            registerIsPresented: $registerIsPresented,
-                            image: .unused,
-                            subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.",
-                            selectedIndex: 0,
-                            authVM: authVM
-                        )
-                    case 1:
-                        MyTicketsCell(
-                            registerIsPresented: $registerIsPresented,
-                            image: .used,
-                            subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.",
-                            selectedIndex: 1,
-                            authVM: authVM
-                        )
-                    default:
-                        EmptyView()
-                    }
+                
+                TabView(selection: $selectedIndex) {
+                    MyTicketsCell(
+                        registerIsPresented: $registerIsPresented,
+                        image: .unused,
+                        subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+                        selectedIndex: 0,
+                        authVM: authVM
+                    )
+                    .tag(0)
+                    
+                    MyTicketsCell(
+                        registerIsPresented: $registerIsPresented,
+                        image: .used,
+                        subTitle: "A használt jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+                        selectedIndex: 1,
+                        authVM: authVM
+                    )
+                    .tag(1)
+                    
                 }
+                .tabViewStyle(.page(indexDisplayMode: .never))
                 
                 Spacer()
             }

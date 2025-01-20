@@ -1,5 +1,5 @@
 {
-  "originHash" : "76da157e1bea53d365b6fc252136b1167ae9dfae150ed774a5e3728341ff7eb9",
+  "originHash" : "7f3c133b1ef1693d81c283feee83975761145f260f087b38d6a0b4a7af2184ae",
   "pins" : [
     {
       "identity" : "shake-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "71e021553f21adaee92ab02c9aadd3f9d5d038a6",
         "version" : "17.1.0"
+      }
+    },
+    {
+      "identity" : "slidingtabview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/QuynhNguyen/SlidingTabView",
+      "state" : {
+        "revision" : "b0f0662977418824d50546b2850a523dcd793bb0",
+        "version" : "1.0.2"
       }
     }
   ],

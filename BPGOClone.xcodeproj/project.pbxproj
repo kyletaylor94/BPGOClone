@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		983CB8242D3EAE9200EBA296 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 983CB8232D3EAE9200EBA296 /* SlidingTabView */; };
 		984B91F62D33C93600D65A15 /* Shake in Frameworks */ = {isa = PBXBuildFile; productRef = 984B91F52D33C93600D65A15 /* Shake */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983CB8242D3EAE9200EBA296 /* SlidingTabView in Frameworks */,
 				984B91F62D33C93600D65A15 /* Shake in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +120,7 @@
 			name = BPGOClone;
 			packageProductDependencies = (
 				984B91F52D33C93600D65A15 /* Shake */,
+				983CB8232D3EAE9200EBA296 /* SlidingTabView */,
 			);
 			productName = BPGOClone;
 			productReference = 98FE52B02D29DE23000CAC12 /* BPGOClone.app */;
@@ -203,6 +206,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */,
+				983CB8222D3EAE9200EBA296 /* XCRemoteSwiftPackageReference "SlidingTabView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98FE52B12D29DE23000CAC12 /* Products */;
@@ -569,6 +573,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		983CB8222D3EAE9200EBA296 /* XCRemoteSwiftPackageReference "SlidingTabView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QuynhNguyen/SlidingTabView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shakebugs/shake-ios";
@@ -580,6 +592,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		983CB8232D3EAE9200EBA296 /* SlidingTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 983CB8222D3EAE9200EBA296 /* XCRemoteSwiftPackageReference "SlidingTabView" */;
+			productName = SlidingTabView;
+		};
 		984B91F52D33C93600D65A15 /* Shake */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 984B91F42D33C93600D65A15 /* XCRemoteSwiftPackageReference "shake-ios" */;

@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-enum tabItems: Int, Identifiable, CaseIterable {
+protocol SelectorSection: CaseIterable, Identifiable, Hashable, RawRepresentable where RawValue == Int {
+    var titleName: String { get }
+}
+
+enum tabItems: Int, SelectorSection {
     case one
     case two
     
@@ -23,43 +27,44 @@ enum tabItems: Int, Identifiable, CaseIterable {
     var id: Int { return self.rawValue }
 }
 
-struct SelectorView: View {
+struct SelectorView<Section: SelectorSection>: View {
     @Binding var selectedIndex: Int
+    var sections: [Section]
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 112) {
-                ForEach(tabItems.allCases) { section in
+            HStack(spacing: 80) {
+                ForEach(sections) { section in
                     Button(action: {
                         withAnimation(.snappy) {
                             selectedIndex = section.rawValue
                         }
                     }, label: {
                         Text(section.titleName)
+                            .frame(maxWidth: .infinity)
                             .padding()
                             .foregroundStyle(selectedIndex == section.rawValue ? .white : .gray)
                     })
                 }
             }
+            
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width  / CGFloat(2.0), height: 1.5)
+                .offset(x: CGFloat(selectedIndex) * UIScreen.main.bounds.width / CGFloat(tabItems.allCases.count))
+                .padding(.trailing, 210)
+            
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width, height: 1)
                 .foregroundStyle(.gray)
             
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width  / CGFloat(tabItems.allCases.count ), height: 1.0)
-                .offset(x: CGFloat(selectedIndex) * UIScreen.main.bounds.width / CGFloat(tabItems.allCases.count))
-                .padding(.trailing, 215)
-                .foregroundStyle(.white)
-            
         }
         .frame(maxWidth: .infinity)
-        
     }
 }
 
 #Preview {
     ZStack{
         Color.backGround.ignoresSafeArea()
-        SelectorView(selectedIndex: .constant(0))
+        SelectorView(selectedIndex: .constant(0), sections: tabItems.allCases)
     }
 }

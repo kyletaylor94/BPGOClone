@@ -29,8 +29,36 @@ enum PlanSortingSection: String, CaseIterable, Identifiable {
     var id: String { return self.rawValue }
 }
 
+enum SocialtravelSection: String, CaseIterable, Identifiable {
+    case bkkstops = "BKK megállók"
+    case regionalbuses = "Regionális buszok"
+    case mavtrains = "MÁV-vonatok"
+    var id: String { return self.rawValue }
+}
+
+enum SharedbikeandScooterSection: String, CaseIterable, Identifiable {
+    case molbubipoints = "MOL Bubi gyűjtőállomások"
+    case mobipoints = "Mobi-pontok"
+    case bicyclepumps = "Kerékpárpumpák"
+    var id: String { return self.rawValue }
+}
+
+enum TicketTransferSection: String, CaseIterable, Identifiable {
+    case bkkbuypoints = "BKK értékesítési pontok"
+    case resellers = "Viszonteladók"
+    var id: String { return self.rawValue }
+}
+
+enum BpInfoSection: String, CaseIterable, Identifiable {
+    case attractions = "Látványosságok"
+    case drink = "Ivókutak"
+    case publictoilet = "Nyilvános WC-k"
+    var id: String { return self.rawValue }
+}
+
 struct PlanSortingView: View {
-    
+    @State private var satelite: Bool = false
+    @State private var planSortingSectionArray: [PlanSortingSection] = []
     var body: some View {
         ZStack{
             UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24))
@@ -42,25 +70,24 @@ struct PlanSortingView: View {
                     .bold()
                     .padding(.leading)
                 
-                VStack(spacing: 12) {
+                VStack(spacing: 16) {
                     ForEach(PlanSortingSection.allCases) { section in
                         DisclosureGroup {
-                            VStack(alignment: .leading, spacing: 12) {
-                                ForEach(0..<3) { _ in
-                                    HStack{
-                                        Circle()
-                                            .frame(height: 20)
-                                        
-                                        Text("BKK megállók")
-                                        
-                                        Spacer()
-                                        
-                                        Rectangle()
-                                            .frame(width: 20, height: 20)
-                                    }
-                                }
+                            switch section {
+                                
+                            case .socialtravel:
+                                PlaningSortingGenericTypeCell(sections: SocialtravelSection.allCases)
+                                
+                            case .sharedbikeandscooter:
+                                PlaningSortingGenericTypeCell(sections: SharedbikeandScooterSection.allCases)
+                                
+                            case .tickettransfer:
+                                PlaningSortingGenericTypeCell(sections: TicketTransferSection.allCases)
+                                
+                            case .bpinfo:
+                                PlaningSortingGenericTypeCell(sections: BpInfoSection.allCases)
+
                             }
-                            .padding()
                             
                         } label: {
                             HStack{
@@ -85,17 +112,30 @@ struct PlanSortingView: View {
                         .bold()
                         .padding(.leading, 20)
                     
-                    HStack{
-                        Image(systemName: "globe")
-                        
-                        Text("Műhöldkép")
-                        
-                        Spacer()
-                        
-                        Rectangle()
-                            .frame(width: 20, height: 20)
+                    Button {
+                        withAnimation(.linear(duration: 0.1)) {
+                            satelite.toggle()
+                        }
+                    } label: {
+                        HStack{
+                            Image(systemName: "globe")
+                            
+                            Text("Műhöldkép")
+                            
+                            Spacer()
+                            
+                            Rectangle()
+                                .stroke(satelite ? .white : .gray, style: StrokeStyle(lineWidth: 2))
+                                .frame(width: 22, height: 22)
+                                .overlay {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(.white)
+                                        .opacity(satelite ? 1 : 0)
+                                }
+                        }
+                        .foregroundStyle(.customBlackWhite)
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                     
                     Spacer()
                 }
@@ -108,4 +148,33 @@ struct PlanSortingView: View {
 
 #Preview {
     PlanSortingView()
+}
+
+struct PlaningSortingGenericTypeCell<Section: CaseIterable & Identifiable & Hashable & RawRepresentable>: View where Section.RawValue == String {
+    var sections: [Section]
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            ForEach(sections, id: \.id) { section in
+                Button {
+                    //select the type
+                } label: {
+                    HStack {
+                        Circle()
+                            .frame(height: 20)
+                            .padding(.leading, 12)
+                        
+                        Text(section.rawValue)
+                        
+                        Spacer()
+                        
+                        Rectangle()
+                            .frame(width: 20, height: 20)
+                    }
+                }
+                .foregroundColor(.primary)
+
+            }
+        }
+        .padding()
+    }
 }
