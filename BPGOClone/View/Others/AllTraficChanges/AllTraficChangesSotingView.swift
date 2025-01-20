@@ -97,13 +97,13 @@ struct AllTraficChangesSotingView: View {
                                                     .fontWeight(.semibold)
                                             }
                                     }
-
+                                    
                                 }
                             }
                             .padding(.leading)
                             .frame(height: 40)
                         }
-
+                        
                     }
                     .padding()
                 }

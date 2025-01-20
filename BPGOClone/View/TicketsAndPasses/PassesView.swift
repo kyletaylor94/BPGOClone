@@ -194,7 +194,7 @@ struct PassesView: View {
                     .foregroundStyle(.backGround)
                     .ignoresSafeArea()
                 
-                PassesSelector(selectedIndex: $selectedIndex)
+                SelectorView(selectedIndex: $selectedIndex, sections: PassesSelectorSection.allCases)
                 
                 VStack{
                     ScrollView{
@@ -218,22 +218,87 @@ struct PassesView: View {
                                     ForEach(PassesSection.allCases) { section in
                                         switch section {
                                         case .adult:
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 24, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 550, disclosureIsOpen: $disclosureOne, sheetIsActive: $sheetOneIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue,sections: AdultSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 24,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 0,
+                                                disclosureHeight: 550,
+                                                disclosureIsOpen: $disclosureOne,
+                                                sheetIsActive: $sheetOneIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: AdultSection.allCases
+                                            )
                                             
                                         case .student:
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 310, disclosureIsOpen: $disclosureTwo, sheetIsActive: $sheetTwoIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: StudentSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 0,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 0,
+                                                disclosureHeight: 310,
+                                                disclosureIsOpen: $disclosureTwo,
+                                                sheetIsActive: $sheetTwoIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: StudentSection.allCases
+                                            )
                                             
                                             
                                         case .universitystudent:
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 310, disclosureIsOpen: $disclosureThree, sheetIsActive: $sheetThreeIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: StudentSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 0,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 0,
+                                                disclosureHeight: 310,
+                                                disclosureIsOpen: $disclosureThree,
+                                                sheetIsActive: $sheetThreeIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: StudentSection.allCases
+                                            )
                                             
                                             
                                         case .pensioner:
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 310, disclosureIsOpen: $disclosureFour, sheetIsActive: $sheetFourIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: StudentSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 0,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 0,
+                                                disclosureHeight: 310,
+                                                disclosureIsOpen: $disclosureFour,
+                                                sheetIsActive: $sheetFourIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: StudentSection.allCases
+                                            )
                                             
                                             
                                         case .havechild:
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24, disclosureHeight: 150, disclosureIsOpen: $disclosureFive, sheetIsActive: $sheetFiveIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: WithChildSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 0,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 24,
+                                                disclosureHeight: 150,
+                                                disclosureIsOpen: $disclosureFive,
+                                                sheetIsActive: $sheetFiveIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: WithChildSection.allCases
+                                            )
                                             
                                         }
                                     }
@@ -241,11 +306,37 @@ struct PassesView: View {
                                     ForEach(PassesSection.allCases.filter({ $0 == .adult || $0 == .havechild })) { section in
                                         
                                         if section == .adult {
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 24, bottomLeading: 24, bottomTrailing: 0, disclosureHeight: 550, disclosureIsOpen: $disclosureOne, sheetIsActive: $sheetOneIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue,sections: AdultSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 24,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 0,
+                                                disclosureHeight: 550,
+                                                disclosureIsOpen: $disclosureOne,
+                                                sheetIsActive: $sheetOneIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: AdultSection.allCases
+                                            )
                                             
                                         } else {
                                             
-                                            PassesDisclosureButton(topLeading: 24, topTrailing: 0, bottomLeading: 24, bottomTrailing: 24, disclosureHeight: 150, disclosureIsOpen: $disclosureFive, sheetIsActive: $sheetFiveIsActive, sheetText: section.sheetText, sheetSubtext: section.sheetSubtext, iconName: section.iconName, title: section.rawValue, sections: WithChildSection.allCases)
+                                            PassesDisclosureButton(
+                                                topLeading: 24,
+                                                topTrailing: 0,
+                                                bottomLeading: 24,
+                                                bottomTrailing: 24,
+                                                disclosureHeight: 150,
+                                                disclosureIsOpen: $disclosureFive,
+                                                sheetIsActive: $sheetFiveIsActive,
+                                                sheetText: section.sheetText,
+                                                sheetSubtext: section.sheetSubtext,
+                                                iconName: section.iconName,
+                                                title: section.rawValue,
+                                                sections: WithChildSection.allCases
+                                            )
                                         }
                                     }
                                 }

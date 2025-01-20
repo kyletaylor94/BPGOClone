@@ -33,6 +33,7 @@ struct SettingsView: View {
     @State private var themeIsPresented = false
     @State private var languageIsPresenter = false
     @State private var nearbyDeparturesIsPresented = false
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround
@@ -157,25 +158,8 @@ struct SettingsView: View {
                     }
                     
                     
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.navBG)
-                        .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 115)
-                        .overlay {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Toggle(isOn: .constant(true)) {
-                                    Text("Hibabejelentés rázásra")
-                                        .foregroundStyle(.white)
-                                        .fontWeight(.semibold)
-                                }
-                                .tint(.button)
-                                
-                                Text("A telefon megrázása esetén előjön a hibabejelentő felület")
-                                    .foregroundStyle(.white)
-                                    .fontWeight(.light)
-                            }
-                            .padding()
-                        }
+                    CustomToggleButton(height: 115, title: "Hibabejelentés rázásra", subTitle: "A telefon megrázása esetén előjön a hibabejelentő felület", isOn: .constant(true))
+
                     
                     if authVM.isAuthenticated {
                         VStack{

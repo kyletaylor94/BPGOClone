@@ -33,7 +33,7 @@ struct SelectorView<Section: SelectorSection>: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 80) {
+            HStack(spacing: 20) {
                 ForEach(sections) { section in
                     Button(action: {
                         withAnimation(.snappy) {

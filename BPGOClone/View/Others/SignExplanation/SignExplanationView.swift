@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-struct CustomImage: View {
-    let iconName: String
-    let circleColor: Color
-    let iconColor: Color
-    var body: some View {
-        Circle()
-            .fill(circleColor)
-            .stroke(.white,style: StrokeStyle())
-            .frame(width: 30, height: 30)
-            .overlay {
-                Image(systemName: iconName)
-                    .font(.system(size: 15))
-                    .foregroundStyle(iconColor)
-            }
-    }
-}
 
 //FIXME: - SignExplanationCell subtitle to 2 columns
 
@@ -96,52 +80,6 @@ enum SignExplanationSection: String, Identifiable, CaseIterable {
     var id: String { return self.rawValue }
 }
 
-enum SignExplationCellSection: String, Identifiable, CaseIterable {
-    case green = "Zöld"
-    case gray = "Szürke"
-    case orange = "Narancs"
-    case white = "Fehér"
-    
-    var icon: String {
-        switch self {
-        case .green:
-            return "wifi"
-        case .gray:
-            return "xmark.circle"
-        case .orange:
-            return "clock"
-        case .white:
-            return ""
-        }
-    }
-    
-    var subTitle: String {
-        switch self {
-        case .green:
-            return "valós idejű adat alapján várható indulás"
-        case .gray:
-            return "múltbeli indulások"
-        case .orange:
-            return "várhatóan késni fog"
-        case .white:
-            return "menetrend alapján tervezett indulások (ikon\nnélkül megjelenő adatok)"
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .green:
-            return .green
-        case .gray:
-            return .gray
-        case .orange:
-            return .orange
-        case .white:
-            return .white
-        }
-    }
-    var id: String { return self.rawValue }
-}
 
 struct SignExplanationView: View {
     @Environment(\.dismiss) var dismiss

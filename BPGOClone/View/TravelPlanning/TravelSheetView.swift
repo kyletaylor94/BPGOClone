@@ -36,11 +36,9 @@ struct TravelSheetView: View {
         ZStack(alignment: .top) {
             UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, topTrailing: 24))
                 .foregroundStyle(.backGround)
-              //  .foregroundStyle(.customBlackWhite)
             
             VStack{
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24, bottomLeading: 30, bottomTrailing: 0, topTrailing: 24))
-                 //   .fill(.customWhiteBlack)
                     .fill(.navBG)
                     .frame(width: UIScreen.main.bounds.width, height: 150)
                     .overlay {
@@ -51,26 +49,18 @@ struct TravelSheetView: View {
                     }
                 
                 VStack{
-                    switch selectedIndex {
-                        
-                    case 0:
+                    TabView(selection: $selectedIndex) {
                         DeparturesView()
-                        
-                    case 1:
+                            .tag(0)
                         RoutesView()
-                        
-                    case 2:
+                            .tag(1)
                         StopsView()
-                        
-                    case 3:
+                            .tag(2)
                         PlanSortingView()
-                        
-                    default:
-                        Text("default")
-                            .foregroundStyle(.white)
+                            .tag(3)
                     }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
-                
             }
             .ignoresSafeArea()
             .overlay {

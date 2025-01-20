@@ -16,68 +16,32 @@ struct NotificationSettingsView: View {
                 .ignoresSafeArea()
             
             VStack{
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.navBG)
-                    .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 90)
-                    .overlay {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Toggle(isOn: .constant(true)) {
-                                Text("Forgalmi változások")
-                                    .foregroundStyle(.white)
-                                    .fontWeight(.semibold)
-                            }
-                            .tint(.button)
-                            
-                            Text("Értesítünk az aktuális járatpótlásokról, terelésekről.")
-                                .foregroundStyle(.white)
-                                .fontWeight(.light)
-                                .font(.subheadline)
-                        }
-                        .padding()
-                    }
+                CustomToggleButton(
+                    height: 90,
+                    title: "Forgalmi változások",
+                    subTitle: "Értesítünk az aktuális járatpótlásokról, terelésekről.",
+                    isOn: .constant(
+                        true
+                    )
+                )
                 
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.navBG)
-                    .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 110)
-                    .overlay {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Toggle(isOn: .constant(true)) {
-                                Text("Hamarosan lejáró bérlet")
-                                    .foregroundStyle(.white)
-                                    .fontWeight(.semibold)
-                            }
-                            .tint(.button)
-                            
-                            Text("Értesítünk, mielőtt a bérleted lejár. Az értesítés időpontja a bérlet típusától függ.")
-                                .foregroundStyle(.white)
-                                .fontWeight(.light)
-                                .font(.subheadline)
-                        }
-                        .padding()
-                    }
+                CustomToggleButton(
+                    height: 110,
+                    title: "Hamarosan lejáró bérlet",
+                    subTitle: "Értesítünk, mielőtt a bérleted lejár. Az értesítés időpontja a bérlet típusától függ.",
+                    isOn: .constant(
+                        true
+                    )
+                )
                 
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.navBG)
-                    .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 110)
-                    .overlay {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Toggle(isOn: .constant(true)) {
-                                Text("Automatikus újravásárlás")
-                                    .foregroundStyle(.white)
-                                    .fontWeight(.semibold)
-                            }
-                            .tint(.button)
-                            
-                            Text("Ha használod az automatikus újravásárlás funkciót, értesítünk, mielőtt megújítjuk a bérleted.")
-                                .foregroundStyle(.white)
-                                .fontWeight(.light)
-                                .font(.subheadline)
-                        }
-                        .padding()
-                    }
+                CustomToggleButton(
+                    height: 110,
+                    title: "Automatikus újravásárlás",
+                    subTitle: "Ha használod az automatikus újravásárlás funkciót, értesítünk, mielőtt megújítjuk a bérleted.",
+                    isOn: .constant(
+                        true
+                    )
+                )
             }
             .padding(.top, 90)
             .navigationBarBackButtonHidden()
@@ -88,3 +52,4 @@ struct NotificationSettingsView: View {
 #Preview {
     NotificationSettingsView()
 }
+

@@ -22,7 +22,7 @@ struct TravelPlanningView: View {
             TravelSheetView(selectedIndex: $selectedIndex, interactionIsHappened: $interActionIshappened)
                 .ignoresSafeArea()
                 .offset(y: max(0, sheetOffset + dragOffset))
-    //FIXME: - this isnt good because it wond change back to the default offset!
+    //FIXME: - this isnt good because it wont change back to the default offset!
                 .offset(y: interActionIshappened ? -300 : 0)
                 .gesture(
                     DragGesture()

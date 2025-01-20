@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 enum TicketsAndPassesSection: String,Identifiable, CaseIterable {
     case passes = "Bérletek"
     case occasionstickets = "Eseti jegyek"
@@ -65,7 +64,6 @@ struct TicketsAndPassesView: View {
                                     )
                                 }
 
-                                
                             case .occasionstickets:
                                 
                                 NavigationLink {
@@ -84,7 +82,6 @@ struct TicketsAndPassesView: View {
                                         caption: section.captionText
                                     )
                                 }
-
 
                             case .dailytickets:
                                 
@@ -105,7 +102,6 @@ struct TicketsAndPassesView: View {
                                     )
                                 }
 
-                                
                             case .capitalcitypasses:
                                 
                                 NavigationLink {

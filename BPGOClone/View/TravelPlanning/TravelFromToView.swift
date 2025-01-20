@@ -7,7 +7,26 @@
 
 import SwiftUI
 
-enum TraverlFromToSection: Int, CaseIterable, Identifiable {
+enum SavePoints: String, CaseIterable, Identifiable {
+    case home = "Otthon"
+    case work = "Munkahely"
+    case savedplaces = "Mentett helyek"
+    
+    var width: CGFloat {
+        switch self {
+        case .home:
+            return 80
+        case .work:
+            return 110
+        case .savedplaces:
+            return 140
+        }
+    }
+    
+    var id: String { return self.rawValue }
+}
+
+enum TraverlFromToSection: Int, SelectorSection {
     case places
     case plans
     case departures
@@ -83,29 +102,15 @@ struct TravelFromToView: View {
                                                 .foregroundStyle(.white)
                                         }
                                     
-                                    Capsule()
-                                        .fill(.black)
-                                        .stroke(.gray, style: StrokeStyle(lineWidth: 2.0))
-                                        .frame(width: 80, height: 35)
-                                        .overlay {
-                                            Text("Otthon")
-                                        }
-                                    
-                                    Capsule()
-                                        .fill(.black)
-                                        .stroke(.gray, style: StrokeStyle(lineWidth: 2.0))
-                                        .frame(width: 110, height: 35)
-                                        .overlay {
-                                            Text("Munkahely")
-                                        }
-                                    
-                                    Capsule()
-                                        .fill(.black)
-                                        .stroke(.gray, style: StrokeStyle(lineWidth: 2.0))
-                                        .frame(width: 140, height: 35)
-                                        .overlay {
-                                            Text("Mentett helyek")
-                                        }
+                                    ForEach(SavePoints.allCases) { points in
+                                        Capsule()
+                                            .fill(.black)
+                                            .stroke(.gray, style: StrokeStyle(lineWidth: 2.0))
+                                            .frame(width: points.width, height: 35)
+                                            .overlay {
+                                                Text(points.rawValue)
+                                            }
+                                    }
                                 }
                             }
                             .padding(.top)
@@ -148,6 +153,7 @@ struct TravelFromToView: View {
                     .padding()
                     .padding(.leading, 5)
                     
+                    
                     HStack(spacing: 50) {
                         ForEach(TraverlFromToSection.allCases) { section in
                             Button(action: {
@@ -177,19 +183,18 @@ struct TravelFromToView: View {
                     .padding(.leading)
                     
                     
-                    switch selectedIndex {
-                    case 0:
+                    TabView(selection: $selectedIndex) {
                         Text("hey")
-                    case 1:
+                            .tag(0)
+                        
                         Text("ho")
+                            .tag(1)
                         
-                    case 2:
-                        Text("hey")
-                        
-                    default:
-                        Text("default")
+                        Text("heyho")
+                            .tag(2)
                     }
-                    
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                
                 }
                 .padding(.top, 50)
                 

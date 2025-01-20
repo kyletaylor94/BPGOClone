@@ -27,8 +27,11 @@ struct FavoritesView: View {
                     }
                 }
             
-             SelectorView(selectedIndex: $selectedIndex, sections: tabItems.allCases)
-                .padding(.top, -50)
+            SelectorView(
+                selectedIndex: $selectedIndex,
+                sections: tabItems.allCases
+            )
+            .padding(.top, -50)
          
             TabView(selection: $selectedIndex) {
                 FavoriteCell(
@@ -52,7 +55,6 @@ struct FavoritesView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
            
-            
             Spacer()
         }
         .background(Color.backGround.ignoresSafeArea())

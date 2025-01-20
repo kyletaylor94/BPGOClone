@@ -123,7 +123,15 @@ struct MyAccountView: View {
                                     .padding()
                                 }
                         } else {
-                            CustomReuseableButton(text: section.rawValue, icon: section.iconName, topLeading: section.topLeading, topTrailing: section.topTrailing, bottomLeading: section.bottomLeading, bottomTrailing: section.bottomTrailing, height: section.height)
+                            CustomReuseableButton(
+                                text: section.rawValue,
+                                icon: section.iconName,
+                                topLeading: section.topLeading,
+                                topTrailing: section.topTrailing,
+                                bottomLeading: section.bottomLeading,
+                                bottomTrailing: section.bottomTrailing,
+                                height: section.height
+                            )
                         }
                     }
                     

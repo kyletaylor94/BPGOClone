@@ -51,6 +51,7 @@ struct OthersView: View {
     @State private var selectedSection: OtherSections? = nil
     @ObservedObject var authVM: AuthViewModel
     let filteredSections = OtherSections.allCases.filter { $0 != .notifications }
+    
     var body: some View {
         ZStack {
             Color.backGround

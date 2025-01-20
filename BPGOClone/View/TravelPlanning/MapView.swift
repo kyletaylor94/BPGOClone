@@ -15,6 +15,7 @@ struct MapView: View {
     var body: some View {
         ZStack{
             Map()
+            
             VStack{
                 NavigationLink {
                     TravelFromToView()

@@ -66,6 +66,7 @@ struct HowAppDoesWorkView: View {
             VStack(spacing: 70) {
                 HStack{
                     Spacer()
+                    
                     Button {
                         dismiss()
                     } label: {

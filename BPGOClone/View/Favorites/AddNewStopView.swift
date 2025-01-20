@@ -18,7 +18,6 @@ struct AddNewStopView: View {
                 .ignoresSafeArea()
             
             VStack{
-               
                 HStack{
                     Text("Add meg a megálló nevét")
                         .font(.subheadline)

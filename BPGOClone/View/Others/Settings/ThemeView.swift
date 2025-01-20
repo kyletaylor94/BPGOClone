@@ -59,20 +59,7 @@ struct ThemeView: View {
                     }
                 }
             
-            RoundedRectangle(cornerRadius: 24)
-                .foregroundStyle(.backGround)
-                .frame(width: UIScreen.main.bounds.width - 32, height: 113)
-                .overlay {
-                    VStack(alignment: .leading) {
-                        Toggle(isOn: .constant(false)) {
-                            Text("Automatikus")
-                                .foregroundStyle(.white)
-                        }
-                        Text("Az alkalmazás megjelenése követni fogja a telefonod beállítását")
-                            .foregroundStyle(.gray)
-                    }
-                    .padding()
-                }
+            CustomToggleButton(height: 113, title: "Automatikus", subTitle: "Az alkalmazás megjelenése követni fogja a telefonod beállítását", isOn: .constant(false))
         }
     }
 }
