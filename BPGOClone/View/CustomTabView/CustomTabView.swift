@@ -56,6 +56,7 @@ struct CustomTabView: View {
                 
                 VStack {
                     Spacer()
+                    
                     HStack(spacing: 40) {
                         ForEach(CustomTabSection.allCases) { section in
                             Button {
@@ -72,7 +73,7 @@ struct CustomTabView: View {
                                         }
                                     Text(section.rawValue)
                                         .font(.caption)
-                                        .foregroundStyle(selectedSection == section ? .navBG : .tabButton)
+                                        .foregroundStyle(.tabButton)
                                 }
                                 .foregroundStyle(.white)
                                 .padding(.bottom)
@@ -86,7 +87,6 @@ struct CustomTabView: View {
                             .fill(.customWhiteBlack)
                     )
                     .offset(y: 35)
-                    
                 }
             }
             .toolbarVisibility(.hidden, for: .navigationBar)

@@ -17,13 +17,15 @@ struct NotificationsView: View {
                     .overlay {
                         HStack{
                             Spacer()
-                            Button {
-                                //
+                            
+                            NavigationLink {
+                                NotificationSettingsView()
                             } label: {
                                 Image(systemName: "gear")
                                     .foregroundStyle(.customBlackWhite)
                                     .font(.title3)
                             }
+
                         }
                         .padding(.top, 45)
                         .padding()

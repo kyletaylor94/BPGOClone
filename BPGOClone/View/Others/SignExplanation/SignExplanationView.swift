@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct CustomImage: View {
+    let iconName: String
+    let circleColor: Color
+    let iconColor: Color
+    var body: some View {
+        Circle()
+            .fill(circleColor)
+            .stroke(.white,style: StrokeStyle())
+            .frame(width: 30, height: 30)
+            .overlay {
+                Image(systemName: iconName)
+                    .font(.system(size: 15))
+                    .foregroundStyle(iconColor)
+            }
+    }
+}
+
 //FIXME: - SignExplanationCell subtitle to 2 columns
 
 enum SignExplanationSection: String, Identifiable, CaseIterable {
@@ -20,6 +37,61 @@ enum SignExplanationSection: String, Identifiable, CaseIterable {
     case trolleybus = "trolibusz"
     case night = "éjszakai busz"
     case railway = "vasút"
+    
+    var iconName: String {
+        switch self {
+        case .metro:
+            return "tram.fill.tunnel"
+        case .suburbantram:
+            return "tram"
+        case .bus:
+            return "bus"
+        case .ship:
+            return "sailboat"
+        case .tram:
+            return "tram"
+        case .regionalbus:
+            return "bus"
+        case .trolleybus:
+            return "bus"
+        case .night:
+            return "bus"
+        case .railway:
+            return "tram"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .metro:
+            return Color.backGround
+        case .suburbantram:
+            return Color.backGround
+        case .bus:
+            return .blue
+        case .ship:
+            return Color.backGround
+        case .tram:
+            return .yellow
+        case .regionalbus:
+            return .orange
+        case .trolleybus:
+            return .red
+        case .night:
+            return Color.backGround
+        case .railway:
+            return .blue
+        }
+    }
+    
+    var iconColor: Color {
+        switch self {
+        case .metro, .suburbantram, .bus, .ship, .trolleybus, .night, .railway:
+            return .white
+        case .tram,.regionalbus:
+            return .black
+        }
+    }
     
     var id: String { return self.rawValue }
 }
@@ -52,7 +124,7 @@ enum SignExplationCellSection: String, Identifiable, CaseIterable {
         case .orange:
             return "várhatóan késni fog"
         case .white:
-            return "menetrend alapján tervezett indulások (ikon nélkül megjelenő adatok)"
+            return "menetrend alapján tervezett indulások (ikon\nnélkül megjelenő adatok)"
         }
     }
     
@@ -93,9 +165,11 @@ struct SignExplanationView: View {
                     LazyVGrid(columns: [GridItem(), GridItem()], alignment: .leading, spacing: 20) {
                         ForEach(SignExplanationSection.allCases) { section in
                             HStack{
-                                Circle()
-                                    .foregroundStyle(.blue)
-                                    .frame(width: 25, height: 25)
+                                CustomImage(
+                                    iconName: section.iconName,
+                                    circleColor: section.color,
+                                    iconColor: section.iconColor
+                                )
                                 Text(section.rawValue)
                                     .foregroundStyle(.white)
                             }
@@ -110,7 +184,12 @@ struct SignExplanationView: View {
                         
                         VStack(alignment: .leading, spacing: 12) {
                             ForEach(SignExplationCellSection.allCases) { section in
-                                SignExplanationCell(icon: section.icon, title: section.rawValue, subTitle: section.subTitle, color: section.color)
+                                SignExplanationCell(
+                                    icon: section.icon,
+                                    title: section.rawValue,
+                                    subTitle: section.subTitle,
+                                    color: section.color
+                                )
                             }
                         }
                     }
@@ -127,27 +206,5 @@ struct SignExplanationView: View {
 #Preview {
     NavigationStack{
         SignExplanationView()
-    }
-}
-
-struct SignExplanationCell: View {
-    let icon: String
-    let title: String
-    let subTitle: String
-    let color: Color
-    var body: some View {
-        HStack(spacing: 10) {
-            Image(systemName: icon)
-                .foregroundStyle(color)
-            
-            Text("\(title):")
-                .foregroundStyle(color)
-                .font(.subheadline)
-                .bold()
-            
-            Text(subTitle)
-                .font(.subheadline)
-                .foregroundStyle(.white)
-        }
     }
 }
