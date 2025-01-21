@@ -33,7 +33,7 @@ enum TicketsAndPassesSection: String,Identifiable, CaseIterable {
 struct TicketsAndPassesView: View {
     var body: some View {
         VStack(spacing: 5) {
-            CustomNavTitle(title: "Jegyek és bérletek")
+            CustomNavTitle(title: "Jegyek és bérletek", dismissAvailable: true)
             
             ZStack(alignment: .top) {
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24))

@@ -36,7 +36,7 @@ struct TypeOfTravelView: View {
     @State private var selectedSection: TypeOfTravelSection = .localtransport
     var body: some View {
         VStack(spacing: 5) {
-            CustomNavTitle(title: "Közlekedés típusa")
+            CustomNavTitle(title: "Közlekedés típusa", dismissAvailable: true)
             
             ZStack(alignment: .top) {
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24))

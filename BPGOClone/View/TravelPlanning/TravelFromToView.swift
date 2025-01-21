@@ -52,6 +52,7 @@ struct TravelFromToView: View {
             Color.backGround.ignoresSafeArea()
             
             VStack(spacing: -35) {
+                
                 UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 24))
                     .frame(height: 280)
                     .foregroundStyle(.navBG)

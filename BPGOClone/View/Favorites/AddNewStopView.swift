@@ -14,7 +14,7 @@ struct AddNewStopView: View {
         ZStack(alignment: .top){
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Kedvenc megálló hozzáadása")
+            CustomNavTitle(title: "Kedvenc megálló hozzáadása", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

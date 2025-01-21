@@ -39,7 +39,7 @@ struct SettingsView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            CustomNavTitle(title: "Beállítások")
+            CustomNavTitle(title: "Beállítások", dismissAvailable: true)
                 .ignoresSafeArea()
             
             ScrollView(.vertical, showsIndicators: false) {

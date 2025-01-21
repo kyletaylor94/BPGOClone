@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CustomNavTitle: View {
     var title: String?
+    var dismissAvailable: Bool?
+    var secondaryButtonAvailable: Bool?
+    var secondaryButtonIcon: String?
+    var secondaryButtonAction: AnyView?
     @Environment(\.dismiss) var dismiss
     var body: some View {
         UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 24))
@@ -18,11 +22,13 @@ struct CustomNavTitle: View {
             .overlay {
                 VStack{
                     HStack{
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "chevron.left")
-                            
+                        if let dismissAvailable {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                
+                            }
                         }
                         
                         Spacer()
@@ -33,6 +39,18 @@ struct CustomNavTitle: View {
                         }
                         
                         Spacer()
+                        
+                        if let secondaryButtonAvailable {
+                            NavigationLink {
+                                AnyView(secondaryButtonAction)
+
+                            } label: {
+                                Image(systemName: secondaryButtonIcon!)
+
+                            }
+
+                        }
+
                         
                     }
                     .foregroundStyle(.white)

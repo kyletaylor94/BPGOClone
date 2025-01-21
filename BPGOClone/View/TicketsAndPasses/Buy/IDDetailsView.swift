@@ -26,7 +26,7 @@ struct IDDetailsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
 
-            CustomNavTitle(title: "Igazolványadatok")
+            CustomNavTitle(title: "Igazolványadatok", dismissAvailable: true)
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {

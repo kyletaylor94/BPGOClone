@@ -32,35 +32,44 @@ struct MyTicketsView: View {
             Color.backGround.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30))
-                    .fill(.navBG)
-                    .frame(width: UIScreen.main.bounds.width, height: 100)
-                    .ignoresSafeArea(edges: .top)
-                    .overlay {
-                        VStack(alignment: .center) {
-                            HStack{
-                                Spacer()
-                                Text("Jegyeim")
-                                    .font(.title2)
-                                    .foregroundStyle(.customBlackWhite)
-                                    .fontWeight(.semibold)
-                                
-                                Spacer()
-                                
-                                NavigationLink {
-                                    HowMobileTicketWorksView()
-                                } label: {
-                                    Image(systemName: "info.circle")
-                                        .font(.title3)
-                                        .foregroundStyle(.white)
-                                }
-
-                            }
-                            .padding()
-                            
-                            Spacer()
-                        }
-                    }
+//                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30))
+//                    .fill(.navBG)
+//                    .frame(width: UIScreen.main.bounds.width, height: 100)
+//                    .ignoresSafeArea(edges: .top)
+//                    .overlay {
+//                        VStack(alignment: .center) {
+//                            HStack{
+//                                Spacer()
+//                                Text("Jegyeim")
+//                                    .font(.title2)
+//                                    .foregroundStyle(.customBlackWhite)
+//                                    .fontWeight(.semibold)
+//                                
+//                                Spacer()
+//                                
+//                                NavigationLink {
+//                                    HowMobileTicketWorksView()
+//                                } label: {
+//                                    Image(systemName: "info.circle")
+//                                        .font(.title3)
+//                                        .foregroundStyle(.white)
+//                                }
+//
+//                            }
+//                            .padding()
+//                            
+//                            Spacer()
+//                        }
+//                    }
+                CustomNavTitle(
+                    title: "Jegyeim",
+                    secondaryButtonAvailable: true,
+                    secondaryButtonIcon: "info.circle",
+                    secondaryButtonAction: AnyView(
+                        HowAppDoesWorkView()
+                    )
+                )
+                .ignoresSafeArea()
                 
                 SelectorView(selectedIndex: $selectedIndex, sections: MyTicketsSection.allCases)
                     .padding(.top, -50)

@@ -12,7 +12,7 @@ struct BuySecondaryView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Vásárlás")
+            CustomNavTitle(title: "Vásárlás", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {

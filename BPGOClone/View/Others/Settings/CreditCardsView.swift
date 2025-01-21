@@ -12,7 +12,7 @@ struct CreditCardsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Bankkártyák")
+            CustomNavTitle(title: "Bankkártyák", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

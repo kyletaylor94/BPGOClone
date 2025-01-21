@@ -150,7 +150,7 @@ struct TicketAndPassesDetails<Section: TicketSection>: View {
     
     var body: some View {
         VStack(spacing: 5) {
-            CustomNavTitle(title: title)
+            CustomNavTitle(title: title, dismissAvailable: true)
             
             ZStack(alignment: .top) {
                 UnevenRoundedRectangle(cornerRadii: .init(topLeading: 24))

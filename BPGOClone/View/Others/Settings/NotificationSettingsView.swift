@@ -12,7 +12,7 @@ struct NotificationSettingsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Értesítések beállítása")
+            CustomNavTitle(title: "Értesítések beállítása", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

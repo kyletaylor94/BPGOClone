@@ -89,7 +89,7 @@ struct SignExplanationView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            CustomNavTitle(title: "Jelmagyarázat")
+            CustomNavTitle(title: "Jelmagyarázat", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

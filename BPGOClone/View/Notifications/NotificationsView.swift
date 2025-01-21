@@ -12,27 +12,38 @@ struct NotificationsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            HStack{
-                CustomNavTitle(title: "Értesítéseim")
-                    .overlay {
-                        HStack{
-                            Spacer()
-                            
-                            NavigationLink {
-                                NotificationSettingsView()
-                            } label: {
-                                Image(systemName: "gear")
-                                    .foregroundStyle(.customBlackWhite)
-                                    .font(.title3)
-                            }
-
-                        }
-                        .padding(.top, 45)
-                        .padding()
-                    }
-
-            }
+            CustomNavTitle(
+                title: "Értesítéseim",
+                dismissAvailable: true,
+                secondaryButtonAvailable: true,
+                secondaryButtonIcon: "gear",
+                secondaryButtonAction: AnyView(
+                    NotificationSettingsView()
+                )
+            )
                 .ignoresSafeArea()
+            
+//            HStack{
+//                CustomNavTitle(title: "Értesítéseim")
+//                    .overlay {
+//                        HStack{
+//                            Spacer()
+//                            
+//                            NavigationLink {
+//                                NotificationSettingsView()
+//                            } label: {
+//                                Image(systemName: "gear")
+//                                    .foregroundStyle(.customBlackWhite)
+//                                    .font(.title3)
+//                            }
+//
+//                        }
+//                        .padding(.top, 45)
+//                        .padding()
+//                    }
+//
+//            }
+//                .ignoresSafeArea()
             
             VStack{
                 Spacer()

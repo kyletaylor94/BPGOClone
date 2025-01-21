@@ -49,7 +49,7 @@ struct DocumentsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Dokumentumok")
+            CustomNavTitle(title: "Dokumentumok", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

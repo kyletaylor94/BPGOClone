@@ -16,7 +16,7 @@ struct CanWeHelpView: View {
             Color.backGround
                 .ignoresSafeArea()
             
-            CustomNavTitle(title: "Segíthetünk?")
+            CustomNavTitle(title: "Segíthetünk?", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

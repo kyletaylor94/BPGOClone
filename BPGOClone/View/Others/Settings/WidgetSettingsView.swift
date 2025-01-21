@@ -12,7 +12,7 @@ struct WidgetSettingsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Widget")
+            CustomNavTitle(title: "Widget", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

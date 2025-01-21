@@ -88,7 +88,7 @@ struct ContactDetailsView: View {
             
             
             VStack(spacing: 3) {
-                CustomNavTitle(title: "Elérhetőségek")
+                CustomNavTitle(title: "Elérhetőségek", dismissAvailable: true)
                     .ignoresSafeArea()
                 
                 ForEach(ContactDetailsSection.allCases) { section in

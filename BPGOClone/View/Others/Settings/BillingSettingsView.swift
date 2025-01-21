@@ -12,7 +12,7 @@ struct BillingSettingsView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Számlázási adatok")
+            CustomNavTitle(title: "Számlázási adatok", dismissAvailable: true)
                 .ignoresSafeArea()
             
             VStack{

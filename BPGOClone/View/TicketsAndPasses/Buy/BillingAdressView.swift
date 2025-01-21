@@ -30,7 +30,7 @@ struct BillingAdressView: View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
-            CustomNavTitle(title: "Számlázási cím hozzáadása")
+            CustomNavTitle(title: "Számlázási cím hozzáadása", dismissAvailable: true)
                 .ignoresSafeArea()
             
             ScrollView{

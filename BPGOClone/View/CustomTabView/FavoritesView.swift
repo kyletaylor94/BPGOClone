@@ -12,20 +12,22 @@ struct FavoritesView: View {
     @ObservedObject var authVM: AuthViewModel
     var body: some View {
         VStack(spacing: 12) {
-            UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
-                .fill(.navBG)
-                .frame(width: UIScreen.main.bounds.width, height: 100)
-                .ignoresSafeArea(edges: .top)
-                .overlay {
-                    VStack(alignment: .center) {
-                        Text("Kedvencek")
-                            .foregroundStyle(.customBlackWhite)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding()
-                        Spacer()
-                    }
-                }
+//            UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
+//                .fill(.navBG)
+//                .frame(width: UIScreen.main.bounds.width, height: 100)
+//                .ignoresSafeArea(edges: .top)
+//                .overlay {
+//                    VStack(alignment: .center) {
+//                        Text("Kedvencek")
+//                            .foregroundStyle(.customBlackWhite)
+//                            .font(.title3)
+//                            .fontWeight(.semibold)
+//                            .padding()
+//                        Spacer()
+//                    }
+//                }
+            CustomNavTitle(title: "Kedvencek")
+                .ignoresSafeArea()
             
             SelectorView(
                 selectedIndex: $selectedIndex,

@@ -102,7 +102,7 @@ struct MyAccountView: View {
             ZStack(alignment: .top) {
                 Color.backGround.ignoresSafeArea()
                 
-                CustomNavTitle(title: "Fiókom")
+                CustomNavTitle(title: "Fiókom", dismissAvailable: true)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 3) {
