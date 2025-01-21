@@ -60,18 +60,11 @@ struct OthersView: View {
             CustomNavTitle()
                 .ignoresSafeArea()
             
-//            VStack(spacing: 0) {
-//                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 30, bottomTrailing: 0))
-//                    .fill(.navBG)
-//                    .frame(width: UIScreen.main.bounds.width, height: 100)
-//                    .ignoresSafeArea(edges: .top)
-//                
-//                Spacer()
-//            }
             
             VStack{
                 
                 if !authVM.isAuthenticated {
+                    
                     RoundedRectangle(cornerRadius: 24)
                         .stroke(.white,style: StrokeStyle())
                         .fill(.navBG)

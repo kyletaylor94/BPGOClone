@@ -24,6 +24,7 @@ struct NearbyDepartures: View {
                     Text("Megálló távolsága szerint")
                 }
                 .foregroundStyle(.white)
+                
                 HStack{
                     Circle()
                         .fill(.navBG)

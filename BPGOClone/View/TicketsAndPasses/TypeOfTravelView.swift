@@ -64,6 +64,7 @@ struct TypeOfTravelView: View {
                                         Text(section.rawValue)
                                             .foregroundStyle(.black)
                                             .bold()
+                                        
                                         HStack {
                                             Circle()
                                                 .frame(height: 5)

@@ -154,4 +154,3 @@ struct MyTicketsCell: View {
 #Preview {
     MyTicketsCell(registerIsPresented: .constant(false), image: .unused, subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", vote: true, selectedIndex: 0, authVM: AuthViewModel())
 }
-

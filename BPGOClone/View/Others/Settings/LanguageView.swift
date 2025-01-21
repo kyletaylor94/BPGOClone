@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+enum SelectedLanguage: String, CaseIterable, Identifiable {
+    case systemlanguage = "Rendszernyelv"
+    case hungarian = "Magyar"
+    case english = "English"
+    var id: String { return self.rawValue }
+}
+
 struct LanguageView: View {
+    @State private var selectedLanguage: SelectedLanguage = .systemlanguage
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 20) {
@@ -16,31 +24,27 @@ struct LanguageView: View {
                     .font(.title3)
                     .bold()
                 
-                HStack{
-                    Circle()
-                        .fill(.navBG)
-                        .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
-                        .frame(height: 20)
-                    Text("Rendszernyelv")
+                ForEach(SelectedLanguage.allCases) { language in
+                    HStack{
+                        Button {
+                            selectedLanguage = language
+                        } label: {
+                            Circle()
+                                .fill(.navBG)
+                                .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
+                                .frame(height: 20)
+                                .overlay {
+                                    Circle()
+                                        .frame(height: 10)
+                                        .opacity(selectedLanguage == language ? 1 : 0)
+                                }
+                            
+                            Text(language.rawValue)
+                        }
+
+                    }
+                    .foregroundStyle(.white)
                 }
-                .foregroundStyle(.white)
-                HStack{
-                    Circle()
-                        .fill(.navBG)
-                        .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
-                        .frame(height: 20)
-                    Text("Magyar")
-                }
-                .foregroundStyle(.white)
-                
-                HStack{
-                    Circle()
-                        .fill(.navBG)
-                        .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
-                        .frame(height: 20)
-                    Text("English")
-                }
-                .foregroundStyle(.white)
             }
             Spacer()
         }

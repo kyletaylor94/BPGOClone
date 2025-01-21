@@ -23,27 +23,6 @@ struct NotificationsView: View {
             )
                 .ignoresSafeArea()
             
-//            HStack{
-//                CustomNavTitle(title: "Értesítéseim")
-//                    .overlay {
-//                        HStack{
-//                            Spacer()
-//                            
-//                            NavigationLink {
-//                                NotificationSettingsView()
-//                            } label: {
-//                                Image(systemName: "gear")
-//                                    .foregroundStyle(.customBlackWhite)
-//                                    .font(.title3)
-//                            }
-//
-//                        }
-//                        .padding(.top, 45)
-//                        .padding()
-//                    }
-//
-//            }
-//                .ignoresSafeArea()
             
             VStack{
                 Spacer()

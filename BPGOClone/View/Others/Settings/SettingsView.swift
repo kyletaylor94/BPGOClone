@@ -51,10 +51,13 @@ struct SettingsView: View {
                                 switch section {
                                 case .notifications:
                                     NotificationSettingsView()
+                                    
                                 case .creditcards:
                                     CreditCardsView()
+                                    
                                 case .billing:
                                     BillingSettingsView()
+                                    
                                 case .widget:
                                     WidgetSettingsView()
                                 }

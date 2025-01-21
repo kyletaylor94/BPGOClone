@@ -7,7 +7,24 @@
 
 import SwiftUI
 
+enum ThemeSettings: String, CaseIterable, Identifiable {
+    case light = "Világos"
+    case dark = "Sötét"
+    
+    
+    var image: ImageResource {
+        switch self {
+        case .light:
+            return .themelight
+        case .dark:
+            return .themedark
+        }
+    }
+    var id: String { return self.rawValue }
+}
+
 struct ThemeView: View {
+    @State private var selectedTheme: ThemeSettings = .light
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Válaszd ki a megjelenítési módot")
@@ -20,41 +37,45 @@ struct ThemeView: View {
                 .frame(width: UIScreen.main.bounds.width - 32, height: 220)
                 .overlay {
                     HStack(spacing: 90) {
-                        VStack(alignment: .center, spacing: 12){
-                            Image(.themelight)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 150)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            HStack{
-                                Circle()
-                                    .fill(.navBG)
-                                    .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
-                                    .frame(height: 15)
-                                
-                                Text("Világos")
-                                    .foregroundStyle(.white)
-                                    .font(.subheadline)
+                        ForEach(ThemeSettings.allCases) { theme in
+                            Button {
+                                selectedTheme = theme
+                            } label: {
+                                VStack(alignment: .center, spacing: 12) {
+                                    ZStack{
+                                        if selectedTheme == theme {
+                                            Rectangle()
+                                                .stroke(.gray, style: StrokeStyle(lineWidth: 3))
+                                                .frame(width: 70, height: 150)
+                                        }
+                                        
+                                        Image(theme.image)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 80, height: 150)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    }
+                                    
+                                    
+                                    HStack{
+                                        Circle()
+                                            .fill(.navBG)
+                                            .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
+                                            .frame(height: 15)
+                                            .overlay {
+                                                Circle()
+                                                    .foregroundStyle(.customBlackWhite)
+                                                    .frame(height: 5)
+                                                    .opacity(selectedTheme == theme ? 1 : 0)
+                                            }
+                                        
+                                        Text(theme.rawValue)
+                                            .foregroundStyle(.white)
+                                            .font(.subheadline)
+                                    }
+                                }
                             }
-                        }
-                        
-                        VStack(alignment: .center,spacing: 12) {
-                            Image(.themedark)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 150)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            HStack{
-                                Circle()
-                                    .fill(.navBG)
-                                    .stroke(.gray, style: StrokeStyle(lineWidth: 1.5))
-                                    .frame(height: 15)
-                                
-                                Text("Sötét")
-                                    .foregroundStyle(.white)
-                            }
+
                         }
                     }
                 }

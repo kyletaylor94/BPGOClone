@@ -59,6 +59,7 @@ enum HowAppDoesWorkSection: Int, Identifiable, CaseIterable {
 struct HowAppDoesWorkView: View {
     @Environment(\.dismiss) var dismiss
     @State private var currentIndex: HowAppDoesWorkSection = .first
+    
     var body: some View {
         ZStack{
             Color.backGround.ignoresSafeArea()

@@ -22,7 +22,7 @@ struct CustomNavTitle: View {
             .overlay {
                 VStack{
                     HStack{
-                        if let dismissAvailable {
+                        if dismissAvailable != nil {
                             Button {
                                 dismiss()
                             } label: {
@@ -40,7 +40,7 @@ struct CustomNavTitle: View {
                         
                         Spacer()
                         
-                        if let secondaryButtonAvailable {
+                        if secondaryButtonAvailable != nil {
                             NavigationLink {
                                 AnyView(secondaryButtonAction)
 

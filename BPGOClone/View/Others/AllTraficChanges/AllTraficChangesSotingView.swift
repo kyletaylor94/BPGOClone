@@ -28,49 +28,7 @@ struct AllTraficChangesSotingView: View {
             .frame(height: 180)
             .overlay {
                 VStack{
-                    HStack{
-                        Button {
-                            //back in date
-                        } label: {
-                            RoundedRectangle(cornerRadius: 18)
-                                .fill(.navBG)
-                                .stroke(.button, style: StrokeStyle(lineWidth: 0.5))
-                                .frame(width: 55, height: 55)
-                                .overlay {
-                                    Image(systemName: "chevron.left")
-                                        .foregroundStyle(.white)
-                                }
-                        }
-                        
-                        Spacer()
-                        
-                        VStack{
-                            Text("2025.01.08.")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .font(.subheadline)
-                            
-                            Text("Szerda")
-                                .foregroundStyle(.white)
-                                .font(.caption)
-                        }
-                        
-                        Spacer()
-                        
-                        Button {
-                            //toward in date
-                        } label: {
-                            RoundedRectangle(cornerRadius: 18)
-                                .fill(.navBG)
-                                .stroke(.button, style: StrokeStyle(lineWidth: 0.5))
-                                .frame(width: 55, height: 55)
-                                .overlay {
-                                    Image(systemName: "chevron.right")
-                                        .foregroundStyle(.white)
-                                }
-                        }
-                    }
-                    .padding()
+                    AlltraficChangesDateChanger()
                     
                     HStack{
                         Button {
@@ -81,28 +39,7 @@ struct AllTraficChangesSotingView: View {
                                 .font(.title)
                         }
                         
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 10) {
-                                ForEach(AllTraficChangesSortingSection.allCases) { section in
-                                    Button {
-                                        //
-                                    } label: {
-                                        Capsule()
-                                            .fill(.backGround)
-                                            .stroke(.gray)
-                                            .frame(width: 80, height: 35)
-                                            .overlay {
-                                                Text(section.rawValue)
-                                                    .foregroundStyle(.button)
-                                                    .fontWeight(.semibold)
-                                            }
-                                    }
-                                    
-                                }
-                            }
-                            .padding(.leading)
-                            .frame(height: 40)
-                        }
+                        AllTraficChangesHorizontalScrollView()
                         
                     }
                     .padding()
