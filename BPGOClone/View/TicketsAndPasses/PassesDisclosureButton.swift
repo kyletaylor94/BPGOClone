@@ -84,31 +84,36 @@ struct PassesDisclosureButton<Section: TicketSection>: View {
                         
                         if disclosureIsOpen {
                             ForEach(sections, id : \.id) { section in
-                                RoundedRectangle(cornerRadius: 24)
-                                    .frame(width: UIScreen.main.bounds.width - 64, height: 70)
-                                    .foregroundStyle(.black)
-                                    .overlay {
-                                        HStack{
-                                            Image(systemName: section.iconName)
-                                            
-                                            Text(section.id)
-                                                .font(.subheadline)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundStyle(.customBlackWhite)
-                                            
-                                            Spacer()
-                                            
-                                            Text("\(section.priceLabel) Ft")
-                                                .bold()
-                                                .foregroundStyle(.white)
-                                            
-                                            Image(systemName: "arrow.right.circle.fill")
-                                                .font(.title2)
-                                                .foregroundStyle(.customBlackWhite)
+                                NavigationLink {
+                                    BuyView()
+                                } label: {
+                                    RoundedRectangle(cornerRadius: 24)
+                                        .frame(width: UIScreen.main.bounds.width - 64, height: 70)
+                                        .foregroundStyle(.black)
+                                        .overlay {
+                                            HStack{
+                                                Image(systemName: section.iconName)
+                                                
+                                                Text(section.id)
+                                                    .font(.subheadline)
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundStyle(.customBlackWhite)
+                                                
+                                                Spacer()
+                                                
+                                                Text("\(section.priceLabel) Ft")
+                                                    .bold()
+                                                    .foregroundStyle(.white)
+                                                
+                                                Image(systemName: "arrow.right.circle.fill")
+                                                    .font(.title2)
+                                                    .foregroundStyle(.customBlackWhite)
 
+                                            }
+                                            .padding()
                                         }
-                                        .padding()
-                                    }
+                                }
+                                .foregroundStyle(.primary)
                             }
                         }
                     }

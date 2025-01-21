@@ -163,27 +163,32 @@ struct TicketAndPassesDetails<Section: TicketSection>: View {
                     
                     VStack{
                         ForEach(sections, id: \.id) { section in
-                            RoundedRectangle(cornerRadius: 18)
-                                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                                .overlay {
-                                    HStack(spacing: 5) {
-                                        Image(systemName: section.iconName)
-                                        
-                                        Text(section.id)
-                                            .multilineTextAlignment(.leading)
-                                            .font(.subheadline)
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(section.priceLabel) Ft")
-                                            .bold()
-                                        
-                                        Image(systemName: "arrow.right.circle.fill")
-                                            .font(.title2)
+                            NavigationLink {
+                                BuyView()
+                            } label: {
+                                RoundedRectangle(cornerRadius: 18)
+                                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                                    .overlay {
+                                        HStack(spacing: 5) {
+                                            Image(systemName: section.iconName)
+                                            
+                                            Text(section.id)
+                                                .multilineTextAlignment(.leading)
+                                                .font(.subheadline)
+                                            
+                                            Spacer()
+                                            
+                                            Text("\(section.priceLabel) Ft")
+                                                .bold()
+                                            
+                                            Image(systemName: "arrow.right.circle.fill")
+                                                .font(.title2)
+                                        }
+                                        .padding()
+                                        .foregroundStyle(.black)
                                     }
-                                    .padding()
-                                    .foregroundStyle(.black)
-                                }
+                            }
+                            .foregroundStyle(.primary)
                         }
                     }
                 }

@@ -74,30 +74,38 @@ struct BuySecondaryView: View {
                 .padding(.top)
                 
                 VStack(spacing: 5) {
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.navBG)
-                        .stroke(.gray, style: StrokeStyle())
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 100)
-                        .overlay {
-                            HStack(alignment: .top, spacing: 12) {
-                                Image(systemName: "document")
-                                    .font(.title2)
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text("Számlázási adatok")
-                                        .font(.caption)
-                                    Text("Add meg a számlázási adataid\na fizetéshez")
-                                        .bold()
-                                        .foregroundStyle(.red)
+                    NavigationLink {
+                        BillingAdressView()
+                    } label: {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(.navBG)
+                            .stroke(.gray, style: StrokeStyle())
+                            .frame(width: UIScreen.main.bounds.width - 32, height: 100)
+                            .overlay {
+                                HStack(alignment: .top, spacing: 12) {
+                                    Image(systemName: "document")
+                                        .font(.title2)
+                                    
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Számlázási adatok")
+                                            .font(.caption)
+                                        Text("Add meg a számlázási adataid\na fizetéshez")
+                                            .bold()
+                                            .foregroundStyle(.red)
+                                            .multilineTextAlignment(.leading)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .padding(.top, 10)
                                 }
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.right")
-                                    .padding(.top, 10)
+                            
+                                .padding()
                             }
-                            .padding()
-                        }
+                    }
+                    .foregroundStyle(.primary)
+
                     
                     RoundedRectangle(cornerRadius: 24)
                         .fill(.navBG)
@@ -118,18 +126,17 @@ struct BuySecondaryView: View {
                                         RoundedRectangle(cornerRadius: 6)
                                             .fill(.navBG)
                                             .stroke(.white, style: StrokeStyle(lineWidth: 2))
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 20, height: 20)
                                             .overlay {
                                                 Image(systemName: "checkmark")
                                                     .bold()
+                                                    .font(.caption)
                                             }
                                     }
                                 }
                                 
                                 Spacer()
                                 
-                                Image(systemName: "chevron.right")
-                                    .padding(.top, 10)
                             }
                             .padding()
                         }
