@@ -37,7 +37,7 @@ struct MyTicketsView: View {
                     secondaryButtonAvailable: true,
                     secondaryButtonIcon: "info.circle",
                     secondaryButtonAction: AnyView(
-                        HowAppDoesWorkView()
+                        HowAppDoesWorkView(howAppDoesWork: true)
                     )
                 )
                 .ignoresSafeArea()

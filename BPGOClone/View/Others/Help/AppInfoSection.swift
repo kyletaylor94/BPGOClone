@@ -11,7 +11,7 @@ struct AppInfoSection: View {
     var body: some View {
         VStack(spacing: 4) {
             NavigationLink {
-                HowAppDoesWorkView()
+                HowAppDoesWorkView(howAppDoesWork: true)
             } label: {
                 CustomReuseableButton(
                     text: "Az alkalmazás fő funkciói",
@@ -24,7 +24,8 @@ struct AppInfoSection: View {
             }
             
             NavigationLink {
-                HowMobileTicketWorksView()
+                HowAppDoesWorkView(howAppDoesWork: false)
+
             } label: {
                 CustomReuseableButton(
                     text: "Mobiljegy működése",
@@ -40,5 +41,7 @@ struct AppInfoSection: View {
 }
 
 #Preview {
-    AppInfoSection()
+    NavigationStack{
+        AppInfoSection()
+    }
 }

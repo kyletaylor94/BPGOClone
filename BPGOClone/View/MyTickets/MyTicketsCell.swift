@@ -34,7 +34,8 @@ struct MyTicketsCell: View {
                 .padding(.horizontal)
             
             NavigationLink {
-                HowMobileTicketWorksView()
+                HowAppDoesWorkView(howAppDoesWork: false)
+               // HowMobileTicketWorksView()
             } label: {
                 Text("Hogyan működik a mobiljegy?")
                     .foregroundStyle(.white)
@@ -59,7 +60,7 @@ struct MyTicketsCell: View {
 
                 
                 NavigationLink(destination: {
-                    HowAppDoesWorkView()
+                    HowAppDoesWorkView(howAppDoesWork: false)
                 }, label: {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(.navBG)

@@ -7,7 +7,69 @@
 
 import SwiftUI
 
-enum HowAppDoesWorkSection: Int, Identifiable, CaseIterable {
+enum HowMobileTicketWorksSection: Int, Identifiable, CaseIterable, HowDoesItWorkSection {
+    case first
+    case second
+    case third
+    case fourth
+    case fifth
+    
+    var image: ImageResource {
+        switch self {
+        case .first:
+            return .helpmticket1
+        case .second:
+            return .helpmticket2
+        case .third:
+            return .helpmticket3
+            
+        case .fourth:
+            return .helpmticket4
+            
+        case .fifth:
+            return .helpmticket5
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .first:
+            return "Érvényesítés kódbeolvasással"
+        case .second:
+            return "A vonaljegyet és az időalapú jegyet midnen felszálláskor érvényesíteni kell"
+        case .third:
+            return "Kódbeolvasás egy gombnyomással"
+        case .fourth:
+            return "Gyorsabb bérletbemutatás a felszállok gombbal"
+        case .fifth:
+            return "Nemzeti Mobilfizetési Rendszer viszonteladó"
+        }
+    }
+    
+    var subTitle: String {
+        switch self {
+        case .first:
+            return "A kód beolvasásával tudod a jegyet érvényesíteni vagy a bérlet érvényességét igazolni.\n\n Sikeres beolvasás esetén egy animált ábra jelenik meg a képernyőn."
+            
+        case .second:
+            return "A bérletet vagy napijegyet csak az első ajtós felszálláskor vagy a metró bejáratánál kell beolvasnod."
+            
+        case .third:
+            return "A widget funkcióval az app megnyitása nélkül, a kezdőképernyőn eléred a jegyet, bérleted."
+            
+        case .fourth:
+            return "Válaszd ki a felszállást jelző ikont,és azonnal megjenik az animált ábra, amelyet a metróállomáson vagy az első ajtós járatokon kell felmutatnod."
+            
+        case .fifth:
+            return "A BKK Zrt. a Nemzeti Mobilfizetési Zrt. hivatlos viszonteladója"
+        }
+    }
+    
+    var id: Int { return self.rawValue }
+}
+
+
+enum HowAppDoesWorkSection: Int, Identifiable, CaseIterable, HowDoesItWorkSection {
     case first
     case second
     case third
@@ -21,7 +83,7 @@ enum HowAppDoesWorkSection: Int, Identifiable, CaseIterable {
             return .helpapp2
         case .third:
             return .helpapp3
-
+            
         case .fourth:
             return .helpapp4
         }
@@ -58,69 +120,59 @@ enum HowAppDoesWorkSection: Int, Identifiable, CaseIterable {
 
 struct HowAppDoesWorkView: View {
     @Environment(\.dismiss) var dismiss
+    let howAppDoesWork: Bool
     @State private var currentIndex: HowAppDoesWorkSection = .first
+    @State private var currentIndex2: HowMobileTicketWorksSection = .first
+    
     
     var body: some View {
         ZStack{
             Color.backGround.ignoresSafeArea()
             
-            VStack(spacing: 70) {
-                HStack{
-                    Spacer()
+            VStack{
+                if !howAppDoesWork {
+                    HowDoesItWorkTest(
+                        sections: HowMobileTicketWorksSection.allCases,
+                        currentIndex: $currentIndex2,
+                        isAppWork: false
+                    )
                     
                     Button {
-                        dismiss()
+                        if currentIndex2 == .fifth {
+                            dismiss()
+                        }
+                        if currentIndex2.rawValue < HowMobileTicketWorksSection.allCases.count - 1 {
+                            withAnimation {
+                                currentIndex2 = HowMobileTicketWorksSection(rawValue: currentIndex.rawValue + 1)!
+                            }
+                        }
                     } label: {
-                        Image(systemName: "xmark")
+                        RoundedRectangle(cornerRadius: 14)
                     }
-                    .foregroundStyle(.white)
-
-                }
-                .padding()
-                
-                Spacer()
-                
-                TabView(selection: $currentIndex) {
-                    ForEach(HowAppDoesWorkSection.allCases) { section in
-                        VStack(spacing: 20) {
-                            Image(section.image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 300, height: 200)
-                            
-                            Text(section.title)
-                                .font(.title3)
-                                .bold()
-                            
-                            Text(section.subTitle)
-                        }
-                        .tag(section)
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.center)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                    .foregroundStyle(.button)
+                    .overlay {
+                        Text(currentIndex2 == .fifth ? "Bezárás" : "Következő")
+                            .bold()
+                            .font(.title3)
                     }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                
-                
-                VStack(spacing: 30) {
-                    HStack(spacing: 12) {
-                        ForEach(0..<4, id: \.self) { index in
-                            Circle()
-                                .fill(currentIndex.rawValue == index ? .white : .black)
-                                .stroke(.gray,style: StrokeStyle())
-                                .frame(height: 10)
-                        }
-                    }
+                    
+                } else {
+                    HowDoesItWorkTest(
+                        sections: HowAppDoesWorkSection.allCases,
+                        currentIndex: $currentIndex,
+                        isAppWork: true
+                    )
                     
                     Button {
                         if currentIndex == .fourth {
                             dismiss()
                         }
                         if currentIndex.rawValue < HowAppDoesWorkSection.allCases.count - 1 {
-                               withAnimation {
-                                   currentIndex = HowAppDoesWorkSection(rawValue: currentIndex.rawValue + 1)!
-                               }
-                           }
+                            withAnimation {
+                                currentIndex = HowAppDoesWorkSection(rawValue: currentIndex.rawValue + 1)!
+                            }
+                        }
                     } label: {
                         RoundedRectangle(cornerRadius: 14)
                     }
@@ -131,17 +183,15 @@ struct HowAppDoesWorkView: View {
                             .bold()
                             .font(.title3)
                     }
+                    
                 }
-                
-                Spacer()
             }
-            .navigationBarBackButtonHidden()
         }
     }
 }
 
 #Preview {
     NavigationStack{
-        HowAppDoesWorkView()
+        HowAppDoesWorkView(howAppDoesWork: false)
     }
 }
