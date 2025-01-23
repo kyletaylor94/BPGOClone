@@ -36,24 +36,35 @@ struct FavoriteCell: View {
             Spacer()
             
             VStack{
-                NavigationLink {
-                    if viewModel.isAuthenticated {
+                
+                CustomButton(
+                    title: buttonTitle,
+                    navigateTo: viewModel.isAuthenticated ? AnyView(
                         AddNewStopView()
-                    } else {
-                        RegisterSheet(authVM: viewModel)
-                    }
-                } label: {
-                    RoundedRectangle(cornerRadius: 18)
-                        .fill(.button)
-                        .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
-                        .overlay {
-                            Text(buttonTitle)
-                                .foregroundStyle(.customWhiteBlack)
-                                .font(.title3)
-                                .bold()
-                        }
-                }
+                    ) : AnyView(
+                        RegisterSheet(
+                            authVM: viewModel
+                        )
+                    )
+                )
+//                NavigationLink {
+//                    if viewModel.isAuthenticated {
+//                        AddNewStopView()
+//                    } else {
+//                        RegisterSheet(authVM: viewModel)
+//                    }
+//                } label: {
+//                    RoundedRectangle(cornerRadius: 18)
+//                        .fill(.button)
+//                        .stroke(.white, style: StrokeStyle(lineWidth: 1.0))
+//                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+//                        .overlay {
+//                            Text(buttonTitle)
+//                                .foregroundStyle(.customWhiteBlack)
+//                                .font(.title3)
+//                                .bold()
+//                        }
+//                }
             }
             .padding(.bottom, 70)
         }

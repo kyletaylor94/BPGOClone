@@ -28,22 +28,24 @@ struct MyTicketsView: View {
     @State private var registerIsPresented = false
     @ObservedObject var authVM: AuthViewModel
     var body: some View {
-        ZStack{
+        ZStack(alignment: .top){
             Color.backGround.ignoresSafeArea()
-
-            VStack(spacing: 0) {
-                CustomNavTitle(
-                    title: "Jegyeim",
-                    secondaryButtonAvailable: true,
-                    secondaryButtonIcon: "info.circle",
-                    secondaryButtonAction: AnyView(
-                        HowAppDoesWorkView(howAppDoesWork: true)
-                    )
+            
+            CustomNavTitle(
+                title: "Jegyeim",
+                secondaryButtonAvailable: true,
+                secondaryButtonIcon: "info.circle",
+                secondaryButtonAction: AnyView(
+                    HowAppDoesWorkView(howAppDoesWork: true)
                 )
-                .ignoresSafeArea()
-                
+            )
+            .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+ 
                 SelectorView(selectedIndex: $selectedIndex, sections: MyTicketsSection.allCases)
-                    .padding(.top, -50)
+                   // .padding(.top, -50)
+                    .padding(.top, 25)
                 
                 
                 TabView(selection: $selectedIndex) {
@@ -51,6 +53,7 @@ struct MyTicketsView: View {
                         registerIsPresented: $registerIsPresented,
                         image: .unused,
                         subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+                        vote: true,
                         selectedIndex: 0,
                         authVM: authVM
                     )
@@ -70,11 +73,14 @@ struct MyTicketsView: View {
                 
                 Spacer()
             }
+            .padding(.top, 50)
         }
     }
 }
 
 
 #Preview {
-    MyTicketsView(authVM: AuthViewModel())
+    MyTicketsView(
+        authVM: AuthViewModel()
+    )
 }

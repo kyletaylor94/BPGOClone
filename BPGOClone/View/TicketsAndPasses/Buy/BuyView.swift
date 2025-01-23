@@ -195,18 +195,13 @@ struct BuyView: View {
                             .padding(.horizontal)
                         }
                     
-                    NavigationLink(destination: {
-                        BuySecondaryView()
-                    }, label: {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundStyle(.button)
-                            .overlay {
-                                Text("Tovább")
-                                    .bold()
-                                    .foregroundStyle(.customWhiteBlack)
-                            }
-                    })
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                   // CustomButton(title: "Tovább", isNavigationLink: true, navigateTo: AnyView( BuySecondaryView()))
+                    CustomButton(
+                        title: "Tovább",
+                        navigateTo: AnyView(
+                            BuySecondaryView()
+                        )
+                    )
 
                 }
                     
@@ -219,4 +214,40 @@ struct BuyView: View {
 
 #Preview {
     BuyView()
+}
+
+struct CustomButton: View {
+    let title: String
+    var void: (() -> Void)? = nil
+    var navigateTo: AnyView? = nil
+
+    var body: some View {
+        Group {
+            if let navigateTo = navigateTo {
+                NavigationLink(destination: navigateTo) {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundStyle(.button)
+                        .overlay {
+                            Text(title)
+                                .bold()
+                                .foregroundStyle(.customWhiteBlack)
+                        }
+                }
+                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+            } else {
+                Button {
+                    void?()
+                } label: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundStyle(.button)
+                        .overlay {
+                            Text(title)
+                                .bold()
+                                .foregroundStyle(.customWhiteBlack)
+                        }
+                }
+                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+            }
+        }
+    }
 }

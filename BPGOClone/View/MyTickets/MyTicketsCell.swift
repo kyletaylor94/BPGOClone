@@ -74,6 +74,8 @@ struct MyTicketsCell: View {
                 })
                 .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                 .opacity(selectedIndex == 1 ? 0 : 1)
+                
+                
 
             }
             .padding(.top)
@@ -86,7 +88,7 @@ struct MyTicketsCell: View {
                     Link(destination: URL(string: "https://www.azevhonlapja.hu/nevezes/benyujtott-palyamu/587/budapestgo-a-digit%C3%A1lis-%C3%BAtit%C3%A1rs")!) {
                         Image(.vote)
                             .resizable()
-                            .scaledToFit()
+                            .aspectRatio(contentMode: .fit)
                             .overlay {
                                 HStack{
                                     Spacer()
@@ -114,7 +116,7 @@ struct MyTicketsCell: View {
                             RoundedRectangle(cornerRadius: 14)
                                 .fill(.button)
                                 .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                                .frame(width: 200, height: 57)
+                                .frame(width: 200, height: 47)
                                 .overlay {
                                     Text("Vásárlás")
                                         .bold()
@@ -130,7 +132,7 @@ struct MyTicketsCell: View {
                             RoundedRectangle(cornerRadius: 14)
                                 .fill(.navBG)
                                 .stroke(.white, style: StrokeStyle(lineWidth: 0.5))
-                                .frame(width: 200, height: 57)
+                                .frame(width: 200, height: 47)
                                 .overlay {
                                     Text("Belépés")
                                         .bold()
@@ -153,5 +155,14 @@ struct MyTicketsCell: View {
 }
 
 #Preview {
-    MyTicketsCell(registerIsPresented: .constant(false), image: .unused, subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.", vote: true, selectedIndex: 0, authVM: AuthViewModel())
+    MyTicketsCell(
+        registerIsPresented: .constant(
+            false
+        ),
+        image: .unused,
+        subTitle: "A jegyeket csak akkor éred el, ha belépsz a fiókodba.",
+        vote: true,
+        selectedIndex: 0,
+        authVM: AuthViewModel()
+    )
 }
