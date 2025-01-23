@@ -161,9 +161,15 @@ struct SettingsView: View {
                     }
                     
                     
-                    CustomToggleButton(height: 115, title: "Hibabejelentés rázásra", subTitle: "A telefon megrázása esetén előjön a hibabejelentő felület", isOn: .constant(true))
+                    CustomToggleButton(
+                        height: 115,
+                        title: "Hibabejelentés rázásra",
+                        subTitle: "A telefon megrázása esetén előjön a hibabejelentő felület",
+                        isOn: .constant(
+                            true
+                        )
+                    )
 
-                    
                     if authVM.isAuthenticated {
                         VStack{
                             RoundedRectangle(cornerRadius: 24)
@@ -188,7 +194,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    VStack(spacing: 3){
+                    VStack(spacing: 3) {
                         NavigationLink {
                             DocumentsView()
                         } label: {
@@ -225,7 +231,8 @@ struct SettingsView: View {
                         .padding(.top)
                         .foregroundStyle(.white)
                 }
-                .padding(.top, 140)
+                .padding(.top, 30)
+
             }
             .navigationBarBackButtonHidden()
             .padding(.top, 90)
