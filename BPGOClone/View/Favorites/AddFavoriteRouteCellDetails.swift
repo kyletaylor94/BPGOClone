@@ -67,7 +67,7 @@ struct AddFavoriteRouteCellDetails: View {
                                 VStack(spacing: 0){
                                     HStack{
                                         VStack(alignment: .leading, spacing: 0) {
-                                            ForEach(0..<5) { _ in
+                                            ForEach(0..<5) { index in
                                                 
                                                 HStack{
                                                     Circle()
@@ -82,10 +82,12 @@ struct AddFavoriteRouteCellDetails: View {
                                                     Text("Örs vezér tere")
                                                 }
                                                 
-                                                Rectangle()
-                                                    .frame(width: 2, height: 35, alignment: .center)
-                                                    .padding(.leading, 8)
-                                                
+                                                if index != 4 {
+                                                    Rectangle()
+                                                        .frame(width: 2, height: 35, alignment: .center)
+                                                        .padding(.leading, 8)
+                                                    
+                                                }
                                             }
                                             
                                             Spacer()
