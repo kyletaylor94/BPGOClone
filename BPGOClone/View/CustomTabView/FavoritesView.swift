@@ -22,7 +22,7 @@ struct FavoritesView: View {
             .padding(.top, -50)
          
             TabView(selection: $selectedIndex) {
-                FavoriteCell(
+                FavoriteCellEmptyView(
                     image: .stops,
                     title: "Állítsd be kedvenc megállóidat!",
                     subTitle: "Egy kattintással megnézheted,mikor indulnak a járatok az adott megállóból.",
@@ -33,7 +33,7 @@ struct FavoritesView: View {
                 )
                 .tag(0)
                 
-                FavoriteCell(
+                FavoriteCellEmptyView(
                     image: .departures,
                     title: "Álltsd be a kedvenc járataidat, és kérj személyre szabott értesítést!",
                     subTitle: "Tájékoztatunk a kiválasztott szakaszon az adott időszaki forgalmi változásairól.",

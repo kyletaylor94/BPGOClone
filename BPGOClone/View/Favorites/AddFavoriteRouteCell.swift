@@ -30,41 +30,46 @@ struct AddFavoriteRouteCell: View {
                 ForEach(routes.indices, id: \.self) { index in
                     let route = routes[index]
                     
-                    UnevenRoundedRectangle(
-                        cornerRadii: .init(
-                            topLeading: index == 0 ? 24 : 0,
-                            bottomLeading: index == routes.count - 1 ? 24 : 0,
-                            bottomTrailing: index == routes.count - 1 ? 24 : 0,
-                            topTrailing: index == 0 ? 24 : 0
+                    NavigationLink {
+                        EmptyView()
+                    } label: {
+                        UnevenRoundedRectangle(
+                            cornerRadii: .init(
+                                topLeading: index == 0 ? 24 : 0,
+                                bottomLeading: index == routes.count - 1 ? 24 : 0,
+                                bottomTrailing: index == routes.count - 1 ? 24 : 0,
+                                topTrailing: index == 0 ? 24 : 0
+                            )
                         )
-                    )
-                    .fill(.navBG)
-                    .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 70)
-                    .overlay {
-                        HStack {
-                            CustomImage(iconName: "location", circleColor: .navBG, iconColor: .white)
-                            
-                            RoundedRectangle(cornerRadius: 8)
-                                .frame(width: 80, height: 28)
-                                .foregroundStyle(.blue)
-                                .overlay {
-                                    Text(route.routeNumber)
-                                        .bold()
+                        .fill(.navBG)
+                        .stroke(.gray, style: StrokeStyle(lineWidth: 0.5))
+                        .frame(width: UIScreen.main.bounds.width - 32, height: 70)
+                        .overlay {
+                            HStack {
+                                CustomImage(iconName: "location", circleColor: .navBG, iconColor: .white)
+                                
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: 80, height: 28)
+                                    .foregroundStyle(.blue)
+                                    .overlay {
+                                        Text(route.routeNumber)
+                                            .bold()
+                                    }
+                                
+                                VStack(alignment: .leading) {
+                                    Text(route.from)
+                                    Text(route.to)
                                 }
-                            
-                            VStack(alignment: .leading) {
-                                Text(route.from)
-                                Text(route.to)
+                                .font(.subheadline)
+                                .fontWeight(.light)
+                                .foregroundColor(.white)
+                                
+                                Spacer()
                             }
-                            .font(.subheadline)
-                            .fontWeight(.light)
-                            .foregroundColor(.white)
-                            
-                            Spacer()
+                            .padding()
                         }
-                        .padding()
                     }
+                    .foregroundStyle(.primary)
                 }
             }
         }

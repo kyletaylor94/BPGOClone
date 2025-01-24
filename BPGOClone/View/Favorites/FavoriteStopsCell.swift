@@ -1,5 +1,5 @@
 //
-//  FavoriteCell.swift
+//  FavoriteStopsCell.swift
 //  BPGOClone
 //
 //  Created by Turdesan Csaba on 2025. 01. 24..
@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct FavoriteCell: View {
+struct FavoriteStopsCell: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 24)
-            .fill(.navBG)
-            .stroke(.gray, style: StrokeStyle())
-            .frame(width: UIScreen.main.bounds.width - 32, height: 150)
+            .frame(width: UIScreen.main.bounds.width - 32, height: 100)
+            .foregroundStyle(.navBG)
             .overlay {
                 VStack(spacing: 15) {
                     HStack{
@@ -38,31 +37,6 @@ struct FavoriteCell: View {
                         
                         
                         Spacer()
-                        
-                        HStack(spacing: 12) {
-                            Button {
-                                //notification enable/disable
-                            } label: {
-                                Image(systemName: "bell.fill")
-                            }
-                            .font(.subheadline)
-                            
-                            VStack{
-                                Rectangle()
-                                    .frame(width: 1, height: 20)
-                            }
-                            
-                            Button {
-                                //delete favoritecell
-                            } label: {
-                                Image(systemName: "trash")
-                            }
-                            .font(.subheadline)
-
-
-                        }
-                        .foregroundStyle(.customBlackWhite)
-
                         
                     }
                     
@@ -101,5 +75,5 @@ struct FavoriteCell: View {
 }
 
 #Preview {
-    FavoriteCell()
+    FavoriteStopsCell()
 }
